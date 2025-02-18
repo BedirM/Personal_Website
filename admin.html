@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .message {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .unread {
+            background-color: #f0f8ff;
+            border-left: 5px solid #007bff;
+        }
+        .read {
+            background-color: #fff;
+            border-left: 5px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Paneli</h1>
+        
+        <section id="messages">
+            <h2>Gelen Mesajlar</h2>
+            <div id="messagesContainer"></div>
+        </section>
+
+        <section id="about-editor">
+            <h2>Hakkımda Düzenle</h2>
+            <form id="aboutForm">
+                <textarea id="aboutContent" rows="10"></textarea>
+                <button type="submit">Güncelle</button>
+            </form>
+        </section>
+
+        <section id="blog-management">
+            <h2>Blog Yönetimi</h2>
+            <button onclick="showBlogForm()" class="add-blog-btn">Yeni Blog Yazısı Ekle</button>
+            
+            <div id="blogForm" style="display: none;">
+                <h3>Blog Yazısı Ekle/Düzenle</h3>
+                <form id="addBlogForm">
+                    <input type="hidden" id="blogId">
+                    <input type="text" id="blogTitle" placeholder="Başlık" required>
+                    <textarea id="blogContent" placeholder="İçerik" required></textarea>
+                    <input type="text" id="blogTags" placeholder="Etiketler (virgülle ayırın)">
+                    <input type="text" id="blogImage" placeholder="Resim URL (isteğe bağlı)">
+                    <button type="submit">Kaydet</button>
+                    <button type="button" onclick="cancelBlogEdit()">İptal</button>
+                </form>
+            </div>
+
+            <div id="blogList">
+                <!-- Blog yazıları burada listelenecek -->
+            </div>
+        </section>
+
+        <button onclick="logout()" class="logout-btn">Çıkış Yap</button>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,631 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    background: #121212;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: moveStars 100s infinite linear;
+
+}
+
+.bg-parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.example.com/background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+    animation: parallaxEffect 15s infinite linear;
+}
+
+@keyframes moveStars {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+
+    100% {
+        transform: translateX(100vw) translateY(100vh);
+    }
+}
+
+/* Sayfa Yüklenince Fade-in Animasyonu */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Sayfa Yüklenince Zoom-in Animasyonu */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Ana içerik animasyonu */
+.container {
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 2s ease-in-out, zoomIn 1.5s ease-in-out;
+    opacity: 0;
+}
+
+/* Başlık Animasyonu */
+h1 {
+    font-size: 40px;
+    /* Başlık boyutunu büyüt */
+    font-weight: 600;
+    color: #A8FF00;
+    margin-bottom: 30px;
+    /* Başlık ile içerik arasındaki boşluğu arttır */
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Parallax arka planı efektini iyileştirelim */
+@keyframes parallaxEffect {
+    0% {
+        background-position: center top;
+    }
+
+    50% {
+        background-position: center center;
+    }
+
+    100% {
+        background-position: center bottom;
+    }
+}
+
+/* Hover efektleri - Metin ve ikonlar */
+h1:hover,
+nav ul li a:hover,
+.social-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+header {
+    background-color: #121212;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #A8FF00;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #76C757;
+}
+
+section {
+    padding: 100px;
+    /* Bölüm içindeki boşluğu artır */
+    background: #121212;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 80px;
+    /* Bölüm başlığı ile önceki içerik arasındaki boşluğu artır */
+    width: 80%;
+    max-width: 700px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #A8FF00;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    /* İkonlar arasındaki boşluğu artır */
+    margin-top: 30px;
+    /* İkonlarla üstteki içerik arasındaki boşluğu artır */
+}
+
+.social-icon {
+    color: #ffffff;
+    font-size: 40px;
+    /* İkon boyutunu büyüt */
+    padding: 20px;
+    /* Daha büyük alan için padding */
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Hover efektlerinde smooth geçiş */
+}
+
+.social-icon:hover {
+    transform: scale(1.3);
+    /* İkon üzerine gelindiğinde büyüme */
+    background-color: #A8FF00;
+    /* Hover efekti ile renk değişimi */
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+
+    .social-icon {
+        font-size: 30px;
+        /* İkon boyutunu küçült */
+        padding: 15px;
+        /* Küçük ikonlar için paddingi azalt */
+    }
+
+    section {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 32px;
+        /* Başlık boyutunu küçült */
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    #contactForm input,
+    #contactForm textarea {
+        width: 100%;
+        padding: 12px;
+        /* Daha küçük padding */
+        font-size: 14px;
+    }
+
+    #contactForm button {
+        width: 100%;
+        padding: 12px;
+        /* Butonun paddingi küçült */
+        font-size: 16px;
+    }
+
+    #hakkimda {
+        width: 90%;
+        max-width: 100%;
+        margin-top: 50px;
+        padding-top: 40px;
+    }
+
+    .edit-link {
+        font-size: 14px;
+    }
+
+    #edit-button {
+        font-size: 14px;
+    }
+}
+
+#contact {
+    font-size: 28px;
+    font-weight: 600;
+    color: #A8FF00;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+#contactForm input,
+#contactForm textarea {
+    width: 100%;
+    /* Form alanlarını tam genişlikte yap */
+    padding: 15px;
+    /* Daha geniş padding ekle */
+    border-radius: 8px;
+    /* Daha yuvarlak kenarlar */
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    font-size: 16px;
+    /* Font boyutunu artır */
+}
+
+#contactForm button {
+    width: 105%;
+    /* Butonu tam genişlikte yap */
+    padding: 15px;
+    border-radius: 8px;
+    /* Daha yuvarlak kenarlar */
+    font-size: 18px;
+    /* Daha büyük font boyutu */
+}
+
+#contactForm button:hover {
+    background-color: #76C757;
+}
+
+#hakkimda {
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+}
+
+.edit-link {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #A8FF00;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.edit-link:hover {
+    color: #76C757;
+}
+
+#edit-button {
+    position: fixed;
+    /* Sayfanın sabit bir kısmına yerleştirilmesi için */
+    bottom: 20px;
+    /* Sayfanın alt kısmına 20px uzaklık */
+    left: 20px;
+    /* Sayfanın sol kısmına 20px uzaklık */
+    z-index: 1000;
+    color: #A8FF00;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#edit-button:hover {
+    color: #76C757;
+}
+footer {
+    background: rgba(30, 30, 30, 0.95);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #333;
+    margin-top: auto;
+    margin-top: 0%; /* Sayfanın altına itmek için */
+}
+
+footer p {
+    color: #888;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive Düzenlemeler */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+}
+
+#contact {
+    font-size: 28px;
+    font-weight: 600;
+    color: #A8FF00;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    /* Logoyu daha yukarıda konumlandır */
+    left: 20px;
+    z-index: 10;
+    /* Logonun diğer öğelerin üzerinde görünmesini sağlamak için */
+}
+
+.logo {
+    width: 70px;
+    /* Daha büyük logo boyutu */
+    height: auto;
+    margin-right: 15px;
+    /* Logo ve başlık arasındaki boşluk */
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.green-text {
+    color: #00ff00;
+    /* Yeşil */
+}
+
+.white-text {
+    color: #ffffff;
+    /* Beyaz */
+}
+
+/* Admin Panel Stilleri */
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.message {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.unread {
+    border-left: 5px solid #A8FF00;
+}
+
+.read {
+    border-left: 5px solid #444;
+}
+
+.delete-btn {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
+
+#aboutForm textarea {
+    width: 100%;
+    min-height: 200px;
+    background: #1e1e1e;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+#aboutForm button {
+    background: #A8FF00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#aboutForm button:hover {
+    background: #76C757;
+}
+
+.logout-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Blog Yönetimi Stilleri */
+.blog-item {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.blog-actions {
+    margin-top: 10px;
+}
+
+#blogForm {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+#addBlogForm input,
+#addBlogForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.add-blog-btn {
+    background: #A8FF00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.add-blog-btn:hover {
+    background: #76C757;
+}
+
+/* Blog Stilleri */
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.blog-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 15px;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.tags {
+    display: flex;
+    gap: 5px;
+}
+
+.tag {
+    background: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+#blogDetail {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.blog-detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Karanlık tema uyumlu scrollbar */
+#blogDetail::-webkit-scrollbar {
+    width: 8px;
+}
+
+#blogDetail::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+#blogDetail::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+#blogDetail::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,15 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bedir Müjde | Kişisel Web Sayfası</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  Hello world
+  <div id="starfield"></div>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1 class="site-title">
+        <span class="green-text">Bedir</span> <span class="white-text">Müjde</span>
+      </h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#hakkimda">Hakkımda</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hakkimda">
+    <h2>Hakkımda</h2>
+    <div id="hakkimdaContent">
+        <!-- Hakkımda içeriği buraya dinamik olarak eklenecek -->
+    </div>
+    <div id="editForm" style="display: none;">
+        <textarea id="editContent"></textarea>
+        <button onclick="saveContent()">Kaydet</button>
+        <button onclick="cancelEdit()">İptal</button>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2>Blog Yazılarım</h2>
+    <div id="blogContainer" class="blog-container">
+        <!-- Blog yazıları buraya dinamik olarak eklenecek -->
+    </div>
+  </section>
+
+  <section id="iletisim">
+    <h2>İletişim</h2>
+    <div class="social-links">
+      <a href="https://github.com/BedirM" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+      <a href="mailto:bedirmujde@hotmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/bedir-m%C3%BCjde-3a27b6221/" target="_blank" class="social-icon"><i
+          class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/bedir.mjd/" target="_blank" class="social-icon"><i
+          class="fab fa-instagram"></i></a>
+    </div>
+
+    <h2 id="contact">Bana Ulaşın</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Adınız" required>
+      <input type="email" id="email" placeholder="E-posta" required>
+      <textarea id="message" placeholder="Mesajınız" required></textarea>
+      <button type="submit">Gönder</button>
+    </form>
+  </section>
+
+  <section id="blogDetail" style="display: none;">
+    <button onclick="closeBlogDetail()" class="close-btn">&times;</button>
+    <div id="blogDetailContent">
+        <!-- Blog detayı buraya dinamik olarak eklenecek -->
+    </div>
+  </section>
+  <footer>
+      <p>&copy; 2024 Bedir Müjde. Tüm hakları saklıdır.</p>
+  </footer>
+
+  <canvas id="canvas"></canvas>
+  <div class="container"> </div>
   <script src="script.js"></script>
 </body>
 
