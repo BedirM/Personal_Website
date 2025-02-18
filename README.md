@@ -1,2 +1,2 @@
-# Personel_Website
+# Personal_Website
 personel website project
