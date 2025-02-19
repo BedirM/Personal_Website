@@ -18,7 +18,7 @@ const path = require('path');
 const app = express();
 
 // Mongoose ayarları
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 
 // MongoDB Bağlantısı - middleware'lerden önce
 mongoose.connect(process.env.MONGODB_URI, {
