@@ -83,7 +83,11 @@ async function saveBlog() {
 // Blog yazılarını yükle
 async function loadBlogs() {
     try {
-        const blogs = await callAPI('/blogs');
+        const response = await fetch(`${API_URL}/api/blogs`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const blogs = await response.json();
         displayBlogs(blogs);
     } catch (error) {
         console.error('Hata:', error);
@@ -93,24 +97,36 @@ async function loadBlogs() {
 // Blog yazılarını görüntüle
 function displayBlogs(blogs) {
     const blogList = document.getElementById('blogList');
-    if (!blogList || !Array.isArray(blogs)) return;
+    if (!blogList) return;
+    
+    if (!Array.isArray(blogs) || blogs.length === 0) {
+        blogList.innerHTML = '<p>Henüz blog yazısı bulunmuyor.</p>';
+        return;
+    }
 
-    blogList.innerHTML = blogs.map(blog => `
-        <div class="blog-item">
-            <h3>${blog.title || 'Başlıksız Blog'}</h3>
-            <p>${blog.content ? blog.content.substring(0, 100) + '...' : 'İçerik yok'}</p>
-            <div class="blog-meta">
-                <span>Tarih: ${new Date(blog.date || Date.now()).toLocaleDateString()}</span>
-                <div class="tags">
-                    ${blog.tags ? blog.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+    blogList.innerHTML = blogs.map(blog => {
+        try {
+            return `
+                <div class="blog-item">
+                    <h3>${blog.title || 'Başlıksız Blog'}</h3>
+                    <p>${blog.content ? blog.content.substring(0, 100) + '...' : 'İçerik yok'}</p>
+                    <div class="blog-meta">
+                        <span>Tarih: ${new Date(blog.date || Date.now()).toLocaleDateString()}</span>
+                        <div class="tags">
+                            ${blog.tags ? blog.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                        </div>
+                    </div>
+                    <div class="blog-actions">
+                        <button onclick="editBlog('${blog._id}')">Düzenle</button>
+                        <button onclick="deleteBlog('${blog._id}')">Sil</button>
+                    </div>
                 </div>
-            </div>
-            <div class="blog-actions">
-                <button onclick="editBlog('${blog._id}')">Düzenle</button>
-                <button onclick="deleteBlog('${blog._id}')">Sil</button>
-            </div>
-        </div>
-    `).join('');
+            `;
+        } catch (error) {
+            console.error('Blog render hatası:', error);
+            return '';
+        }
+    }).join('');
 }
 
 // Blog yazısını sil
