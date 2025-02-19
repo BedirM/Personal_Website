@@ -11,4 +11,5 @@ const aboutSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('About', aboutSchema);
+// Model zaten tanımlıysa onu kullan, değilse yeni model oluştur
+module.exports = mongoose.models.About || mongoose.model('About', aboutSchema);
