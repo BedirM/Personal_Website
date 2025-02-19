@@ -1,4 +1,4 @@
-// API URL'ini dinamik olarak ayarla
+// API URL'ini production ve development ortamları için ayarla
 const API_URL = window.location.origin;
 const starfield = document.getElementById('starfield');
 const numStars = 400;
@@ -40,16 +40,17 @@ async function callAPI(endpoint, options = {}) {
         });
 
         if (!response.ok) {
+            console.error(`API Hatası: ${response.status} - ${response.statusText}`);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        return await response.json();
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error(`API Hatası (${endpoint}):`, error);
         throw error;
     }
 }
-
 // Hakkımda içeriğini getir
 async function getHakkimdaContent() {
     const hakkimdaContent = document.getElementById('hakkimdaContent');
