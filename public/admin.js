@@ -97,10 +97,10 @@ function displayBlogs(blogs) {
 
     blogList.innerHTML = blogs.map(blog => `
         <div class="blog-item">
-            <h3>${blog.title}</h3>
-            <p>${blog.content ? blog.content.substring(0, 100) + '...' : ''}</p>
+            <h3>${blog.title || 'Başlıksız Blog'}</h3>
+            <p>${blog.content ? blog.content.substring(0, 100) + '...' : 'İçerik yok'}</p>
             <div class="blog-meta">
-                <span>Tarih: ${new Date(blog.date).toLocaleDateString()}</span>
+                <span>Tarih: ${new Date(blog.date || Date.now()).toLocaleDateString()}</span>
                 <div class="tags">
                     ${blog.tags ? blog.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
                 </div>
