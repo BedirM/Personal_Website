@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog');
 
-// Tüm blog yazılarını getir
+// Tüm blogları getir
 router.get('/', async (req, res) => {
     try {
         const blogs = await Blog.find().sort({ date: -1 });
         res.json(blogs);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Blog getirme hatası:', error);
+        res.status(500).json({ message: 'Sunucu hatası' });
     }
 });
 
@@ -25,20 +26,15 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Yeni blog yazısı ekle
+// Yeni blog ekle
 router.post('/', async (req, res) => {
-    const blog = new Blog({
-        title: req.body.title,
-        content: req.body.content,
-        tags: req.body.tags,
-        imageUrl: req.body.imageUrl
-    });
-
     try {
-        const newBlog = await blog.save();
-        res.status(201).json(newBlog);
+        const blog = new Blog(req.body);
+        await blog.save();
+        res.status(201).json(blog);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        console.error('Blog kaydetme hatası:', error);
+        res.status(500).json({ message: 'Sunucu hatası' });
     }
 });
 
