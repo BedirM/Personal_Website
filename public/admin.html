@@ -47,12 +47,11 @@
                 <h3>Blog Yazısı Ekle/Düzenle</h3>
                 <form id="addBlogForm">
                     <input type="hidden" id="blogId">
-                    <input type="text" id="blogTitle" placeholder="Başlık" required>
-                    <textarea id="blogContent" placeholder="İçerik" required></textarea>
+                    <input type="text" id="blogTitle" placeholder="Blog Başlığı" required>
+                    <textarea id="blogContent" placeholder="Blog İçeriği" required></textarea>
                     <input type="text" id="blogTags" placeholder="Etiketler (virgülle ayırın)">
-                    <input type="text" id="blogImage" placeholder="Resim URL (isteğe bağlı)">
-                    <button type="submit">Kaydet</button>
-                    <button type="button" onclick="cancelBlogEdit()">İptal</button>
+                    <input type="text" id="blogImage" placeholder="Resim URL">
+                    <button type="button" onclick="saveBlog()">Kaydet</button>
                 </form>
             </div>
 
