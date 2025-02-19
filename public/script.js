@@ -50,6 +50,7 @@ async function callAPI(endpoint, options = {}) {
         throw error;
     }
 }
+
 // Hakkımda içeriğini getir
 async function getHakkimdaContent() {
     const hakkimdaContent = document.getElementById('hakkimdaContent');
@@ -149,6 +150,11 @@ async function showBlogDetail(id) {
     } catch (error) {
         console.error('Blog detayı yüklenemedi:', error);
     }
+}
+
+// Blog detayını kapat
+function closeBlogDetail() {
+    document.getElementById('blogDetail').style.display = 'none';
 }
 
 // Sayfa yüklendiğinde
