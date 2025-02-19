@@ -86,12 +86,12 @@ function displayBlogs(blogs) {
     
     blogContainer.innerHTML = blogs.map(blog => `
         <div class="blog-card" onclick="showBlogDetail('${blog._id}')">
-            ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title}">` : ''}
+            ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title || 'Blog Resmi'}">` : ''}
             <div class="blog-content">
-                <h3>${blog.title}</h3>
-                <p>${blog.content.substring(0, 150)}...</p>
+                <h3>${blog.title || 'Başlıksız Blog'}</h3>
+                <p>${blog.content ? blog.content.substring(0, 150) + '...' : 'İçerik yok'}</p>
                 <div class="blog-meta">
-                    <span class="date">${new Date(blog.date).toLocaleDateString()}</span>
+                    <span class="date">${new Date(blog.date || Date.now()).toLocaleDateString()}</span>
                     <div class="tags">
                         ${blog.tags ? blog.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
                     </div>
