@@ -21,4 +21,5 @@ const BlogSchema = new mongoose.Schema({
     imageUrl: String
 });
 
-module.exports = mongoose.model('Blog', BlogSchema);
+// Model zaten tanımlıysa onu kullan, değilse yeni model oluştur
+module.exports = mongoose.models.Blog || mongoose.model('Blog', BlogSchema);
