@@ -82,23 +82,35 @@ async function loadBlogs() {
 // Blog görüntüleme
 function displayBlogs(blogs) {
     const blogContainer = document.getElementById('blogContainer');
-    if (!blogContainer || !Array.isArray(blogs)) return;
+    if (!blogContainer) return;
     
-    blogContainer.innerHTML = blogs.map(blog => `
-        <div class="blog-card" onclick="showBlogDetail('${blog._id}')">
-            ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title || 'Blog Resmi'}">` : ''}
-            <div class="blog-content">
-                <h3>${blog.title || 'Başlıksız Blog'}</h3>
-                <p>${blog.content ? blog.content.substring(0, 150) + '...' : 'İçerik yok'}</p>
-                <div class="blog-meta">
-                    <span class="date">${new Date(blog.date || Date.now()).toLocaleDateString()}</span>
-                    <div class="tags">
-                        ${blog.tags ? blog.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+    if (!Array.isArray(blogs) || blogs.length === 0) {
+        blogContainer.innerHTML = '<p>Henüz blog yazısı bulunmuyor.</p>';
+        return;
+    }
+
+    blogContainer.innerHTML = blogs.map(blog => {
+        try {
+            return `
+                <div class="blog-card" onclick="showBlogDetail('${blog._id}')">
+                    ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title || 'Blog Resmi'}">` : ''}
+                    <div class="blog-content">
+                        <h3>${blog.title || 'Başlıksız Blog'}</h3>
+                        <p>${blog.content ? blog.content.substring(0, 150) + '...' : 'İçerik yok'}</p>
+                        <div class="blog-meta">
+                            <span class="date">${new Date(blog.date || Date.now()).toLocaleDateString()}</span>
+                            <div class="tags">
+                                ${blog.tags ? blog.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    `).join('');
+            `;
+        } catch (error) {
+            console.error('Blog render hatası:', error);
+            return '';
+        }
+    }).join('');
 }
 
 // İletişim formu
