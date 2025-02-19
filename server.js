@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 // CORS ayarları - en üstte olmalı
 app.use(cors({
     origin: [
-        'https://personal-website-p0oq48jge-bedirs-projects-b20fcbc6.vercel.app/',
+        'https://personal-website-p0oq48jge-bedirs-projects-b20fcbc6.vercel.app',
         'http://localhost:3000'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
