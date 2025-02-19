@@ -44,8 +44,7 @@ async function callAPI(endpoint, options = {}) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error(`API Hatası (${endpoint}):`, error);
         throw error;
