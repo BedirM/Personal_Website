@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-// Modülleri tek tek import edelim ve test edelim
+// Modülleri import et
 console.log("Express modülünü yüklemeye çalışıyorum...");
 const express = require('express');
 console.log("Express modülü başarıyla yüklendi!");
@@ -16,56 +16,68 @@ console.log("CORS modülü başarıyla yüklendi!");
 const path = require('path');
 
 const app = express();
-const port = 3000;
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// API routes - Önce API route'larını tanımlayalım
-app.use('/api/messages', require('./routes/messageRoutes'));
-app.use('/api/blogs', require('./routes/blogRoutes'));
-app.use('/api/about', require('./routes/aboutRoutes'));
-
-// Statik dosyaları sunmak için - API route'larından sonra
-app.use(express.static(path.join(__dirname)));
+// CORS ayarları - en üstte olmalı
 app.use(cors({
     origin: [
-        process.env.API_URL,
+        'https://personal-website-p0oq48jge-bedirs-projects-b20fcbc6.vercel.app',
         'http://localhost:3000'
     ],
-    credentials: true
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// MongoDB Bağlantısı
-const dbURI = process.env.MONGODB_URI;
+// Statik dosyaları serve et
+app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('✅ MongoDB bağlantısı başarılı!'))
-    .catch(err => console.error('❌ MongoDB bağlantı hatası:', err));
-
-// Routes
-console.log("Routes dosyasını yüklemeye çalışıyorum...");
+// Routes dosyalarını yükle
+console.log("Routes dosyalarını yüklemeye çalışıyorum...");
 const aboutRoutes = require('./routes/aboutRoutes');
-console.log("Routes dosyası başarıyla yüklendi!");
-
 const messageRoutes = require('./routes/messageRoutes');
-console.log("Routes dosyası başarıyla yüklendi!");
-
 const blogRoutes = require('./routes/blogRoutes');
-console.log("Routes dosyası başarıyla yüklendi!");
+console.log("Routes dosyaları başarıyla yüklendi!");
 
+// API routes
 app.use('/api/about', aboutRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/blogs', blogRoutes);
 
-// Ana Sayfa Route (Test için)
+// Ana sayfa route
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Admin sayfası için
+// Admin sayfası route
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
+// Tüm diğer route'lar için index.html'i gönder
+app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api/')) {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    }
+});
+
+// MongoDB Bağlantısı
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('MongoDB bağlantısı başarılı'))
+    .catch(err => console.error('MongoDB bağlantı hatası:', err));
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({ message: 'Not Found' });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Internal Server Error' });
 });
 
 // Sunucuyu Başlat
@@ -73,3 +85,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Sunucu http://localhost:${PORT} adresinde çalışıyor.`);
 });
+
+module.exports = app;

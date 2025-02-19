@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // API çağrılarını güncelle
-const API_URL = process.env.API_URL || 'http://localhost:3000';
+const API_URL = window.location.origin;
 
 // Mesajları yükle
 async function loadMessages() {
