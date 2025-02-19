@@ -6,10 +6,13 @@ const Blog = require('../models/blog');
 router.get('/', async (req, res) => {
     try {
         const blogs = await Blog.find().sort({ date: -1 });
+        if (!blogs || !Array.isArray(blogs)) {
+            return res.json([]);
+        }
         res.json(blogs);
     } catch (error) {
         console.error('Blog getirme hatası:', error);
-        res.status(500).json({ message: 'Sunucu hatası' });
+        res.status(500).json({ message: 'Sunucu hatası', blogs: [] });
     }
 });
 
@@ -29,7 +32,17 @@ router.get('/:id', async (req, res) => {
 // Yeni blog ekle
 router.post('/', async (req, res) => {
     try {
-        const blog = new Blog(req.body);
+        if (!req.body.title || !req.body.content) {
+            return res.status(400).json({ message: 'Başlık ve içerik zorunludur' });
+        }
+
+        const blog = new Blog({
+            title: req.body.title,
+            content: req.body.content,
+            tags: req.body.tags || [],
+            imageUrl: req.body.imageUrl || ''
+        });
+
         await blog.save();
         res.status(201).json(blog);
     } catch (error) {
