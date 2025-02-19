@@ -43,15 +43,15 @@
             <h2>Blog Yönetimi</h2>
             <button onclick="showBlogForm()" class="add-blog-btn">Yeni Blog Yazısı Ekle</button>
             
-            <div id="blogForm" style="display: none;">
+            <div id="blogForm">
                 <h3>Blog Yazısı Ekle/Düzenle</h3>
-                <form id="addBlogForm">
+                <form id="addBlogForm" onsubmit="event.preventDefault(); saveBlog();">
                     <input type="hidden" id="blogId">
                     <input type="text" id="blogTitle" placeholder="Blog Başlığı" required>
                     <textarea id="blogContent" placeholder="Blog İçeriği" required></textarea>
                     <input type="text" id="blogTags" placeholder="Etiketler (virgülle ayırın)">
                     <input type="text" id="blogImage" placeholder="Resim URL">
-                    <button type="button" onclick="saveBlog()">Kaydet</button>
+                    <button type="submit">Kaydet</button>
                 </form>
             </div>
 
