@@ -23,4 +23,5 @@ const MessageSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+// Model zaten tanımlıysa onu kullan, değilse yeni model oluştur
+module.exports = mongoose.models.Message || mongoose.model('Message', MessageSchema);
