@@ -158,12 +158,6 @@ async function editBlog(id) {
     }
 }
 
-// Çıkış yap
-function logout() {
-    sessionStorage.removeItem('adminAuthenticated');
-    window.location.href = '/';
-}
-
 // Hakkımda içeriğini yükle
 async function loadAboutContent() {
     try {
@@ -201,3 +195,11 @@ document.getElementById('aboutForm').addEventListener('submit', async (e) => {
         alert('Güncelleme sırasında bir hata oluştu!');
     }
 });
+
+// Çıkış yap
+function logout() {
+    sessionStorage.removeItem('adminAuthenticated');
+    window.location.href = '/';
+}
+
+
