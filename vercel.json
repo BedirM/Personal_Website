@@ -16,12 +16,12 @@
             "dest": "server.js"
         },
         {
-            "src": "/favicon.ico",
-            "dest": "public/favicon.ico"
+            "src": "/logo.png",
+            "dest": "public/logo.png"
         },
         {
-            "src": "/logo.png",
-            "dest": "logo.png"
+            "src": "/favicon.ico",
+            "dest": "public/favicon.ico"
         },
         {
             "src": "/(.*)",
