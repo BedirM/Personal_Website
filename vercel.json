@@ -16,8 +16,12 @@
             "dest": "server.js"
         },
         {
+            "src": "/admin.html",
+            "dest": "/public/admin.html"
+        },
+        {
             "src": "/admin",
-            "dest": "server.js"
+            "dest": "/public/admin.html"
         },
         {
             "src": "/(favicon.ico|logo.png|robots.txt)",
@@ -25,7 +29,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "public/$1"
+            "dest": "/public/$1"
         }
     ]
 }
