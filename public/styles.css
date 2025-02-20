@@ -11,6 +11,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     overflow-x: hidden;
+    color: #ffffff;
 }
 
 .star {
@@ -303,6 +304,7 @@ h2 {
     width: 80%;
     max-width: 700px;
     position: relative;
+    color: #ffffff;
 }
 
 .edit-link {
@@ -541,6 +543,7 @@ footer p {
     overflow: hidden;
     transition: transform 0.3s ease;
     cursor: pointer;
+    color: #ffffff;
 }
 
 .blog-card:hover {
