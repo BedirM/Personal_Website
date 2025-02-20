@@ -5,11 +5,15 @@ const About = require('../models/about');
 // Hakkımda içeriğini getir
 router.get('/', async (req, res) => {
     try {
-        const about = await About.findOne();
-        if (!about) {
-            return res.status(404).json({ message: 'İçerik bulunamadı' });
+        let aboutInfo = await About.findOne();
+        if (!aboutInfo) {
+            // Eğer veri yoksa varsayılan bir içerik oluştur
+            aboutInfo = new About({
+                content: 'Henüz içerik girilmemiş.'
+            });
+            await aboutInfo.save();
         }
-        res.json(about);
+        res.json(aboutInfo);
     } catch (error) {
         console.error('Hakkımda içeriği getirme hatası:', error);
         res.status(500).json({ message: 'Sunucu hatası' });
@@ -17,23 +21,22 @@ router.get('/', async (req, res) => {
 });
 
 // Hakkımda içeriğini güncelle
-router.post('/', async (req, res) => {
+router.put('/', async (req, res) => {
     try {
         const { content } = req.body;
         if (!content) {
-            return res.status(400).json({ message: 'İçerik gerekli' });
+            return res.status(400).json({ message: 'İçerik zorunludur' });
         }
 
-        let about = await About.findOne();
-        if (about) {
-            about.content = content;
-            await about.save();
+        let aboutInfo = await About.findOne();
+        if (aboutInfo) {
+            aboutInfo.content = content;
         } else {
-            about = new About({ content });
-            await about.save();
+            aboutInfo = new About({ content });
         }
 
-        res.json(about);
+        await aboutInfo.save();
+        res.json(aboutInfo);
     } catch (error) {
         console.error('Hakkımda içeriği güncelleme hatası:', error);
         res.status(500).json({ message: 'Sunucu hatası' });
