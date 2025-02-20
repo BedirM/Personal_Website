@@ -18,7 +18,7 @@ const path = require('path');
 const app = express();
 
 // Mongoose ayarları
-mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', false);
 
 // MongoDB Bağlantısı - middleware'lerden önce
 mongoose.connect(process.env.MONGODB_URI, {
@@ -34,6 +34,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Statik dosyaları serve et
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Favicon isteğini yönet
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
+});
 
 // CORS ayarları
 app.use(cors({
@@ -59,20 +64,15 @@ app.use('/api/about', aboutRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/blogs', blogRoutes);
 
-// Ana sayfa route
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Admin sayfası route
+// Admin sayfası route - diğer route'lardan ÖNCE tanımlanmalı
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'admin.html'));
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // Tüm diğer route'lar için index.html'i gönder
 app.get('*', (req, res) => {
     if (!req.path.startsWith('/api/')) {
-        res.sendFile(path.join(__dirname, 'index.html'));
+        res.sendFile(path.join(__dirname, 'public/index.html'));
     }
 });
 
