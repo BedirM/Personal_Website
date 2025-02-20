@@ -4,7 +4,7 @@ function checkAuth() {
     if (!isAuthenticated) {
         const password = prompt('Lütfen admin şifresini girin:');
         const ADMIN_PASSWORD = 'BedirMujde123';
-        if (password === ADMIN_PASSWORD ) {
+        if (password === ADMIN_PASSWORD) {
             sessionStorage.setItem('adminAuthenticated', 'true');
         } else {
             alert('Yanlış şifre!');
@@ -17,6 +17,7 @@ function checkAuth() {
 // Sayfa yüklendiğinde güvenlik kontrolü yap
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
+    loadAboutContent();
     loadBlogs();
 });
 
@@ -162,3 +163,41 @@ function logout() {
     sessionStorage.removeItem('adminAuthenticated');
     window.location.href = '/';
 }
+
+// Hakkımda içeriğini yükle
+async function loadAboutContent() {
+    try {
+        const response = await fetch(`${API_URL}/api/about`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        document.getElementById('aboutContent').value = data.content || '';
+    } catch (error) {
+        console.error('Hakkımda içeriği yüklenemedi:', error);
+    }
+}
+
+// Hakkımda formunu gönder
+document.getElementById('aboutForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+        const content = document.getElementById('aboutContent').value;
+        const response = await fetch(`${API_URL}/api/about`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        alert('Hakkımda içeriği başarıyla güncellendi!');
+    } catch (error) {
+        console.error('Hakkımda içeriği güncellenemedi:', error);
+        alert('Güncelleme sırasında bir hata oluştu!');
+    }
+});
