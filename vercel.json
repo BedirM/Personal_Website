@@ -15,22 +15,14 @@
             "src": "/api/(.*)",
             "dest": "server.js"
         },
-
         {
             "src": "/admin",
             "dest": "server.js"
         },
-       
         {
-            "src": "/favicon.ico",
-            "dest": "public/favicon.ico"
+            "src": "/(favicon.ico|logo.png|robots.txt)",
+            "dest": "/public/$1"
         },
-        
-        {
-            "src": "/logo.png",
-            "dest": "public/logo.png"
-        },
-        
         {
             "src": "/(.*)",
             "dest": "public/$1"
