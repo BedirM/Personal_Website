@@ -12,54 +12,24 @@
     ],
     "routes": [
         {
-            "src": "/api/auth/(.*)",
+            "src": "/api/(.*)",
             "dest": "server.js"
         },
-        
-        {
-            "src": "/api/about/(.*)",
-            "dest": "server.js"
-
-        },
-        
-        {
-            "src": "/api/blogs/(.*)",
-            "dest": "server.js"
-        },
-        
-        {
-            "src": "/api/messages/(.*)",
-            "dest": "server.js"
-        },
-        
-        {
-            "src": "/admin",
-            "dest": "server.js"
-        },
-        
         {
             "src": "/admin.html",
-            "dest": "server.js"
+            "dest": "/public/admin.html"
         },
-        
+        {
+            "src": "/admin",
+            "dest": "/public/admin.html"
+        },
         {
             "src": "/(favicon.ico|logo.png|robots.txt)",
             "dest": "/public/$1"
         },
-        
-        {
-            "src": "/static/(.*)",
-            "dest": "/public/$1"
-        },
-
-        {
-            "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|html))",
-            "dest": "/public/$1"
-        },
-        
         {
             "src": "/(.*)",
-            "dest": "server.js"
+            "dest": "/public/$1"
         }
     ]
 }
