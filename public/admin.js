@@ -4,14 +4,7 @@ function checkAuth() {
     if (!isAuthenticated) {
         const password = prompt('Lütfen admin şifresini girin:');
         const ADMIN_PASSWORD = 'BedirMujde123';
-        
-        if (!password) {
-            alert('Şifre boş olamaz!');
-            window.location.href = '/';
-            return;
-        }
-
-        if (password.trim() === ADMIN_PASSWORD) {
+        if (password === ADMIN_PASSWORD) {
             sessionStorage.setItem('adminAuthenticated', 'true');
         } else {
             alert('Yanlış şifre!');
