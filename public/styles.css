@@ -441,7 +441,8 @@ footer p {
 
 .message p {
     margin: 5px 0;
-    color: #666;
+    color: #000000;
+    
 }
 
 .message-actions {
