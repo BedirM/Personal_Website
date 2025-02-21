@@ -65,18 +65,14 @@ app.use('/api/messages', messageRoutes);
 app.use('/api/blogs', blogRoutes);
 
 // Admin sayfası route'ları
-app.get('/admin', (req, res) => {
+app.get(['/admin', '/admin.html'], (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
-
-app.get('/admin.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
-});
-
 // Tüm diğer route'lar için index.html'i gönder
 app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api/') && 
-        !req.path.startsWith('/admin')) {
+   if (req.path === '/admin' || req.path === '/admin.html') {
+        res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+    } else if (!req.path.startsWith('/api/')) {
         res.sendFile(path.join(__dirname, 'public/index.html'));
     }
 });
