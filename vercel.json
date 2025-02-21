@@ -24,12 +24,12 @@
             "dest": "/public/admin.html"
         },
         {
-            "src": "/(favicon.ico|logo.png|robots.txt)",
+            "src": "/(.*\\.(js|css|png|jpg|ico|html))",
             "dest": "/public/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/public/$1"
+            "dest": "server.js"
         }
     ]
 }
