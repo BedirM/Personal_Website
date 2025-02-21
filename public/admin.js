@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     loadAboutContent();
     loadBlogs();
+    loadMessages();
 });
 
 // API URL'ini ayarla
@@ -195,6 +196,91 @@ document.getElementById('aboutForm').addEventListener('submit', async (e) => {
         alert('Güncelleme sırasında bir hata oluştu!');
     }
 });
+// Mesajları yükle fonksiyonu
+async function loadMessages() {
+    try {
+        const response = await fetch(`${API_URL}/api/messages`, {
+            credentials: 'include' // Cookie'leri gönder
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const messages = await response.json();
+        displayMessages(messages);
+    } catch (error) {
+        console.error('Mesajlar yüklenemedi:', error);
+    }
+}
+
+// Mesajları görüntüle
+function displayMessages(messages) {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (!messagesContainer) return;
+
+    if (!messages.length) {
+        messagesContainer.innerHTML = '<p>Henüz mesaj bulunmuyor.</p>';
+        return;
+    }
+
+    messagesContainer.innerHTML = messages.map(message => `
+        <div class="message ${message.isRead ? 'read' : 'unread'}">
+            <h3>Gönderen: ${message.name}</h3>
+            <p>Email: ${message.email}</p>
+            <p>Mesaj: ${message.message}</p>
+            <p>Tarih: ${new Date(message.date).toLocaleString()}</p>
+            <div class="message-actions">
+                ${!message.isRead ? 
+                    `<button onclick="markAsRead('${message._id}')" class="read-btn">Okundu Olarak İşaretle</button>` : 
+                    ''
+                }
+                <button onclick="deleteMessage('${message._id}')" class="delete-btn">Sil</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Mesajı okundu olarak işaretle
+async function markAsRead(messageId) {
+    try {
+        const response = await fetch(`${API_URL}/api/messages/${messageId}`, {
+            method: 'PATCH',
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        loadMessages(); // Mesajları yeniden yükle
+    } catch (error) {
+        console.error('Mesaj durumu güncellenemedi:', error);
+    }
+}
+
+// Mesajı sil
+async function deleteMessage(messageId) {
+    if (confirm('Bu mesajı silmek istediğinizden emin misiniz?')) {
+        try {
+            const response = await fetch(`${API_URL}/api/messages/${messageId}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            loadMessages(); // Mesajları yeniden yükle
+        } catch (error) {
+            console.error('Mesaj silinemedi:', error);
+        }
+    }
+}
+
+
+
 
 // Çıkış yap
 function logout() {
