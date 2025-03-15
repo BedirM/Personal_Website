@@ -1,13 +1,23 @@
 // Admin paneli güvenlik kontrolü
-function checkAuth() {
-    const password = prompt('Lütfen admin şifresini girin:');
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; // Ortam değişkeninden al
-    if (password === ADMIN_PASSWORD) {
-        // Giriş başarılı, admin panelini yükle
+async function checkAuth() {
+    const passwordInput = document.getElementById('adminPassword'); // Şifre inputunu al
+    const yourPasswordInputValue = passwordInput.value; // Kullanıcının girdiği şifreyi al
+
+    const response = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: yourPasswordInputValue }), // Kullanıcının girdiği şifre
+    });
+
+    if (response.ok) {
+        // Başarılı giriş
         loadAboutContent();
         loadBlogs();
         loadMessages();
     } else {
+        // Hata durumu
         alert('Yanlış şifre!');
         window.location.href = '/';
     }
