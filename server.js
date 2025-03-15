@@ -45,8 +45,7 @@ app.get('/favicon.ico', (req, res) => {
 app.use(cors({
     origin: [
         'http://localhost:3000', // Geliştirme ortamı
-        'https://personal-website-sand-three-68.vercel.app', // Vercel URL'si
-        'https://personal-website-git-main-bedirs-projects-b20fcbc6.vercel.app'
+        'https://bedirmujde-personal-website.vercel.app', // Vercel URL'si
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
