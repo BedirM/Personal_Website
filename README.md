@@ -1,2 +1,2 @@
 # Personal_Website
-personel website project
+personal website project
