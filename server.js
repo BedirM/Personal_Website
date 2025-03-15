@@ -46,6 +46,7 @@ app.use(cors({
     origin: [
         'http://localhost:3000', // Geliştirme ortamı
         'https://bedirmujde-personal-website.vercel.app', // Vercel URL'si
+        'https://personal-website-git-main-bedirs-projects-b20fcbc6.vercel.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
