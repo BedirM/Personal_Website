@@ -45,7 +45,8 @@ app.get('/favicon.ico', (req, res) => {
 app.use(cors({
     origin: [
         'http://localhost:3000', // Geliştirme ortamı
-        'https://personal-website-sand-three-68.vercel.app' // Vercel URL'si
+        'https://personal-website-sand-three-68.vercel.app', // Vercel URL'si
+        'https://personal-website-git-main-bedirs-projects-b20fcbc6.vercel.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
@@ -60,24 +61,78 @@ const blogRoutes = require('./routes/blogRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 console.log("Routes dosyaları başarıyla yüklendi!");
 
+// Admin yetkilendirme kontrolü middleware'i
+const adminAuth = (req, res, next) => {
+    const password = req.headers['authorization']?.split(' ')[1]; // Şifreyi başlıktan al
+    if (password === process.env.ADMIN_PASSWORD) {
+        next(); // Giriş başarılı, devam et
+    } else {
+        res.status(403).json({ message: 'Yetkisiz erişim' }); // Yetkisiz erişim
+    }
+};
+
 // API routes
 app.use('/api/about', aboutRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/blogs', blogRoutes);
 
 // Admin sayfası route'ları
-app.use(['/admin', '/admin.html'], (req, res, next) => {
-    const password = req.headers['authorization']?.split(' ')[1]; // Şifreyi başlıktan al
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; // Ortam değişkeninden al
-    if (password === ADMIN_PASSWORD) {
-        next(); // Giriş başarılı, devam et
+app.get(['/admin', '/admin.html'], (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html')); // Admin sayfasını gönder
+});
+
+// API endpoint'leri için admin yetkilendirme kontrolü
+app.post('/api/admin/auth', (req, res) => {
+    const { password } = req.body;
+    if (password === process.env.ADMIN_PASSWORD) {
+        res.status(200).send({ success: true });
     } else {
-        res.sendStatus(403); // Yetkisiz erişim
+        res.status(401).send({ success: false });
     }
-}, adminRoutes);
+});
+
+// Admin API endpoint'leri için yetkilendirme
+app.use('/api/admin', adminAuth); // Admin API'leri için yetkilendirme kontrolü
+
+// Blog ekleme
+app.post('/api/admin/blogs', adminAuth, async (req, res) => {
+    // Blog ekleme işlemleri
+});
+
+// Blog güncelleme
+app.put('/api/blogs/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, content, tags, imageUrl } = req.body;
+
+    try {
+        const updatedBlog = await Blog.findByIdAndUpdate(id, {
+            title,
+            content,
+            tags,
+            imageUrl
+        }, { new: true }); // Yeni güncellenmiş belgeyi döndür
+
+        if (!updatedBlog) {
+            return res.status(404).send('Blog bulunamadı');
+        }
+
+        res.status(200).json(updatedBlog);
+    } catch (error) {
+        res.status(500).send('Güncelleme sırasında bir hata oluştu');
+    }
+});
+
+// Blog silme
+app.delete('/api/admin/blogs/:id', adminAuth, async (req, res) => {
+    // Blog silme işlemleri
+});
+
+// Diğer admin API endpoint'leri için de adminAuth middleware'ini ekleyin
+app.use('/api/admin/messages', adminAuth); // Mesajlar için
+app.use('/api/admin/about', adminAuth); // Hakkımda için
 
 // Tüm diğer route'lar için index.html'i gönder
-app.get('*', (req, res) => {
+app.use('*', (req, res) => {
    if (req.path === '/admin' || req.path === '/admin.html') {
         res.sendFile(path.join(__dirname, 'public', 'admin.html'));
     } else if (!req.path.startsWith('/api/')) {
@@ -109,15 +164,6 @@ mongoose.connection.on('error', (err) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Sunucu http://localhost:${PORT} adresinde çalışıyor.`);
-});
-
-app.post('/api/admin/auth', (req, res) => {
-    const { password } = req.body;
-    if (password === process.env.ADMIN_PASSWORD) {
-        res.status(200).send({ success: true });
-    } else {
-        res.status(401).send({ success: false });
-    }
 });
 
 module.exports = app;
