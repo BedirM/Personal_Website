@@ -44,9 +44,8 @@ app.get('/favicon.ico', (req, res) => {
 // CORS ayarları
 app.use(cors({
     origin: [
-        'https://personal-website-kohl-psi.vercel.app',
-        'https://personal-website-git-main-bedirs-projects-b20fcbc6.vercel.app',
-        'http://localhost:3000'
+        'http://localhost:3000', // Geliştirme ortamı
+        'https://personal-website-sand-three-68.vercel.app' // Vercel URL'si
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
@@ -110,6 +109,15 @@ mongoose.connection.on('error', (err) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Sunucu http://localhost:${PORT} adresinde çalışıyor.`);
+});
+
+app.post('/api/admin/auth', (req, res) => {
+    const { password } = req.body;
+    if (password === process.env.ADMIN_PASSWORD) {
+        res.status(200).send({ success: true });
+    } else {
+        res.status(401).send({ success: false });
+    }
 });
 
 module.exports = app;
