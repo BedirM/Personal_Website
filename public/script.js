@@ -198,6 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
     getHakkimdaContent();
     loadBlogs();
 
+    // Admin sayfasında checkAuth fonksiyonunu çağır
+    if (window.location.pathname === '/admin.html') {
+        checkAuth(); // Admin sayfasında checkAuth fonksiyonunu çağır
+    }
+
     if (window.location.pathname === '/about.html') {
         getHakkimdaContent();
     }
@@ -244,7 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
             target.scrollIntoView({ behavior: 'smooth' }); // Yumuşak kaydırma
         }
     });
+
+    const passwordInput = document.getElementById('adminPassword');
+    if (passwordInput) {
+        passwordInput.focus(); // Sayfa yüklendiğinde inputa odaklan
+    }
 });
+
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
