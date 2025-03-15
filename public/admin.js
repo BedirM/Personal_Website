@@ -13,19 +13,24 @@ async function checkAuth() {
 
     if (response.ok) {
         // Başarılı giriş
+        document.getElementById('authSection').style.display = 'none'; // Şifre giriş bölümünü gizle
+        document.getElementById('adminContent').style.display = 'block'; // Admin içeriğini göster
         loadAboutContent();
         loadBlogs();
         loadMessages();
     } else {
         // Hata durumu
         alert('Yanlış şifre!');
-        window.location.href = '/';
+        window.location.href = '/'; // Ana sayfaya yönlendir
     }
 }
 
 // Sayfa yüklendiğinde güvenlik kontrolü yap
 document.addEventListener('DOMContentLoaded', () => {
-    checkAuth();
+    const passwordInput = document.getElementById('adminPassword');
+    if (passwordInput) {
+        passwordInput.focus(); // Sayfa yüklendiğinde inputa odaklan
+    }
 });
 
 // API URL'ini ayarla
@@ -62,32 +67,44 @@ async function saveBlog() {
     const content = document.getElementById('blogContent').value;
     const tags = document.getElementById('blogTags').value.split(',').map(tag => tag.trim());
     const imageUrl = document.getElementById('blogImage').value;
+    const blogId = document.getElementById('blogId').value; // Blog ID'sini al
 
     if (!title || !content) {
         alert('Başlık ve içerik alanları zorunludur!');
         return;
     }
 
-    if (document.getElementById('blogId').value) {
-        if (!confirm('Bu blog yazısını güncellemek istediğinizden emin misiniz?')) {
-            return;
-        }
-    }
-
     try {
-        await callAPI('/blogs', {
-            method: 'POST',
-            body: JSON.stringify({
-                title,
-                content,
-                tags,
-                imageUrl
-            })
-        });
+        if (blogId) {
+            // Güncelleme işlemi için onay iste
+            if (confirm('Bu blog yazısını güncellemek istediğinizden emin misiniz?')) {
+                await callAPI(`/blogs/${blogId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        title,
+                        content,
+                        tags,
+                        imageUrl
+                    })
+                });
+                alert('Blog yazısı başarıyla güncellendi!');
+            }
+        } else {
+            // Blog ekleme işlemi
+            await callAPI('/blogs', {
+                method: 'POST',
+                body: JSON.stringify({
+                    title,
+                    content,
+                    tags,
+                    imageUrl
+                })
+            });
+            alert('Blog yazısı başarıyla kaydedildi!');
+        }
 
-        alert('Blog yazısı başarıyla kaydedildi!');
-        document.getElementById('blogForm').reset();
-        loadBlogs();
+        document.getElementById('addBlogForm').reset(); // Formu sıfırla
+        loadBlogs(); // Blogları yeniden yükle
     } catch (error) {
         console.error('Blog kaydedilemedi:', error);
         alert('Blog kaydedilirken bir hata oluştu!');
@@ -145,12 +162,14 @@ function displayBlogs(blogs) {
 
 // Blog yazısını sil
 async function deleteBlog(id) {
+    // Silme işlemi için onay iste
     if (confirm('Bu blog yazısını silmek istediğinizden emin misiniz?')) {
         try {
             await callAPI(`/blogs/${id}`, {
                 method: 'DELETE'
             });
-            loadBlogs();
+            alert('Blog yazısı başarıyla silindi!'); // Silme işlemi başarılı mesajı
+            loadBlogs(); // Blogları yeniden yükle
         } catch (error) {
             console.error('Hata:', error);
         }
@@ -297,5 +316,3 @@ function logout() {
     sessionStorage.removeItem('token'); // Token'ı sil
     window.location.href = '/';
 }
-
-
