@@ -1,25 +1,21 @@
 // Admin paneli güvenlik kontrolü
 function checkAuth() {
-    const isAuthenticated = sessionStorage.getItem('adminAuthenticated');
-    if (!isAuthenticated) {
-        const password = prompt('Lütfen admin şifresini girin:');
-        const ADMIN_PASSWORD = 'BedirMujde123';
-        if (password === ADMIN_PASSWORD) {
-            sessionStorage.setItem('adminAuthenticated', 'true');
-        } else {
-            alert('Yanlış şifre!');
-            window.location.href = '/';
-            return;
-        }
+    const password = prompt('Lütfen admin şifresini girin:');
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; // Ortam değişkeninden al
+    if (password === ADMIN_PASSWORD) {
+        // Giriş başarılı, admin panelini yükle
+        loadAboutContent();
+        loadBlogs();
+        loadMessages();
+    } else {
+        alert('Yanlış şifre!');
+        window.location.href = '/';
     }
 }
 
 // Sayfa yüklendiğinde güvenlik kontrolü yap
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
-    loadAboutContent();
-    loadBlogs();
-    loadMessages();
 });
 
 // API URL'ini ayarla
@@ -62,6 +58,12 @@ async function saveBlog() {
         return;
     }
 
+    if (document.getElementById('blogId').value) {
+        if (!confirm('Bu blog yazısını güncellemek istediğinizden emin misiniz?')) {
+            return;
+        }
+    }
+
     try {
         await callAPI('/blogs', {
             method: 'POST',
@@ -92,7 +94,7 @@ async function loadBlogs() {
         const blogs = await response.json();
         displayBlogs(blogs);
     } catch (error) {
-        console.error('Hata:', error);
+        console.error('Bloglar yüklenemedi:', error);
     }
 }
 
@@ -178,7 +180,7 @@ document.getElementById('aboutForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     try {
         const content = document.getElementById('aboutContent').value;
-        const response = await fetch(`${API_URL}/api/about`, {
+        const response = await fetch('/api/about', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -196,7 +198,8 @@ document.getElementById('aboutForm').addEventListener('submit', async (e) => {
         alert('Güncelleme sırasında bir hata oluştu!');
     }
 });
-// Mesajları yükle fonksiyonu
+
+// Mesajları yükle
 async function loadMessages() {
     try {
         const response = await fetch(`${API_URL}/api/messages`, {
@@ -279,12 +282,9 @@ async function deleteMessage(messageId) {
     }
 }
 
-
-
-
 // Çıkış yap
 function logout() {
-    sessionStorage.removeItem('adminAuthenticated');
+    sessionStorage.removeItem('token'); // Token'ı sil
     window.location.href = '/';
 }
 

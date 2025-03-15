@@ -14,6 +14,7 @@ const cors = require('cors');
 console.log("CORS modülü başarıyla yüklendi!");
 
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -57,6 +58,7 @@ console.log("Routes dosyalarını yüklemeye çalışıyorum...");
 const aboutRoutes = require('./routes/aboutRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 console.log("Routes dosyaları başarıyla yüklendi!");
 
 // API routes
@@ -65,9 +67,16 @@ app.use('/api/messages', messageRoutes);
 app.use('/api/blogs', blogRoutes);
 
 // Admin sayfası route'ları
-app.get(['/admin', '/admin.html'], (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
-});
+app.use(['/admin', '/admin.html'], (req, res, next) => {
+    const password = req.headers['authorization']?.split(' ')[1]; // Şifreyi başlıktan al
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; // Ortam değişkeninden al
+    if (password === ADMIN_PASSWORD) {
+        next(); // Giriş başarılı, devam et
+    } else {
+        res.sendStatus(403); // Yetkisiz erişim
+    }
+}, adminRoutes);
+
 // Tüm diğer route'lar için index.html'i gönder
 app.get('*', (req, res) => {
    if (req.path === '/admin' || req.path === '/admin.html') {

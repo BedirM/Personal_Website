@@ -15,29 +15,29 @@
 
   <header>
     <div class="logo-container">
-      <img src="/logo.png" alt="Logo" class="logo">
-      <h1 class="site-title">
-        <span class="green-text">Bedir</span> <span class="white-text">Müjde</span>
-      </h1>
+      <a href="index.html" class="logo-link">
+        <img src="logo.png" alt="Logo" class="logo">
+      </a>
+      <a href="index.html" class="logo-link">
+        <h1 class="site-title">
+          <span class="green-text">Bedir</span> <span class="white-text">Müjde</span>
+        </h1>
+      </a>
     </div>
     <nav>
       <ul>
-        <li><a href="#hakkimda">Hakkımda</a></li>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="about.html">Hakkımda</a></li>
+        <li><a href="#blog">Blog Yazılarım</a></li>
         <li><a href="#iletisim">İletişim</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="hakkimda">
-    <h2>Hakkımda</h2>
-    <div id="hakkimdaContent">
-        <!-- Hakkımda içeriği buraya dinamik olarak eklenecek -->
-    </div>
-    <div id="editForm" style="display: none;">
-        <textarea id="editContent"></textarea>
-        <button onclick="saveContent()">Kaydet</button>
-        <button onclick="cancelEdit()">İptal</button>
-    </div>
+  <section id="welcome">
+    <h2>Kişisel Web Siteme Hoşgeldiniz!</h2>
+    <p>Teknoloji, kültür ve yaşam üzerine özgün analizler.</p>
+    <button id="readLatestPosts">Son Yazıları Oku</button>
   </section>
 
   <section id="blog">
@@ -73,13 +73,12 @@
         <!-- Blog detayı buraya dinamik olarak eklenecek -->
     </div>
   </section>
-  <footer>
-      <p>&copy; 2024 Bedir Müjde. Tüm hakları saklıdır.</p>
-  </footer>
 
   <canvas id="canvas"></canvas>
   <div class="container"> </div>
+  <footer>
+    <p>&copy; 2024 Bedir Müjde. Tüm hakları saklıdır.</p>
+  </footer>
   <script src="script.js"></script>
 </body>
-
 </html>

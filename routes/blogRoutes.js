@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
         res.status(201).json(blog);
     } catch (error) {
         console.error('Blog kaydetme hatası:', error);
-        res.status(500).json({ message: 'Sunucu hatası' });
+        res.status(500).json({ message: 'Blog kaydedilirken bir hata oluştu' });
     }
 });
 
