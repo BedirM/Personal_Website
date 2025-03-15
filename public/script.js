@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkAuth(); // Admin sayfasında checkAuth fonksiyonunu çağır
     }
 
+    // Hakkımda sayfasında içerik yükle
     if (window.location.pathname === '/about.html') {
         getHakkimdaContent();
     }
@@ -241,18 +242,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // "Son Yazıları Oku" butonuna tıklanıldığında smooth scroll
-    document.getElementById('readLatestPosts').addEventListener('click', function(e) {
-        e.preventDefault(); // Varsayılan davranışı engelle
-        const target = document.getElementById('blog'); // Hedef bölüm
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' }); // Yumuşak kaydırma
-        }
-    });
-
     const passwordInput = document.getElementById('adminPassword');
     if (passwordInput) {
         passwordInput.focus(); // Sayfa yüklendiğinde inputa odaklan
+    }
+
+    // "Son Yazıları Oku" butonuna tıklanıldığında smooth scroll
+    const readLatestPostsButton = document.getElementById('readLatestPosts');
+    if (readLatestPostsButton) {
+        readLatestPostsButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Varsayılan davranışı engelle
+            const target = document.getElementById('blog'); // Hedef bölüm
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' }); // Yumuşak kaydırma
+            }
+        });
+    } else {
+        console.warn('Son Yazıları Oku butonu bulunamadı!'); // Hata ayıklama için
     }
 });
 
@@ -289,4 +295,3 @@ document.querySelector('.logo-link').addEventListener('click', function(e) {
     e.preventDefault(); // Varsayılan davranışı engelle
     window.location.href = 'index.html'; // Ana sayfaya yönlendir
 });
-
