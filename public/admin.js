@@ -316,3 +316,5 @@ function logout() {
     sessionStorage.removeItem('token'); // Token'ı sil
     window.location.href = '/';
 }
+
+
