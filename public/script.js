@@ -194,6 +194,7 @@ function closeBlogDetail() {
 
 // Sayfa yüklendiğinde
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Sayfa yüklendi!'); // Kontrol için
     createStars(); // Yıldızları oluştur
     getHakkimdaContent();
     loadBlogs();
@@ -206,6 +207,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hakkımda sayfasında içerik yükle
     if (window.location.pathname === '/about.html') {
         getHakkimdaContent();
+    }
+
+    // "Blog Yazılarım" bağlantısına tıklanıldığında smooth scroll
+    const blogLink = document.querySelector('nav ul li a[href="#blog"]');
+    if (blogLink) {
+        blogLink.addEventListener('click', function(e) {
+            e.preventDefault(); // Varsayılan davranışı engelle
+            const target = document.getElementById('blog'); // Hedef bölüm
+            if (target) {
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY; // Hedefin konumunu al
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth' // Yumuşak kaydırma
+                });
+            }
+        });
     }
 
     // İletişim butonuna tıklandığında ana sayfanın iletişim kısmına git
@@ -231,17 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Blog bağlantılarına tıklanıldığında smooth scroll
-    document.querySelectorAll('nav ul li a[href="#blog"]').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault(); // Varsayılan davranışı engelle
-            const target = document.getElementById('blog'); // Hedef bölüm
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' }); // Yumuşak kaydırma
-            }
-        });
-    });
-
     const passwordInput = document.getElementById('adminPassword');
     if (passwordInput) {
         passwordInput.focus(); // Sayfa yüklendiğinde inputa odaklan
@@ -257,8 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 target.scrollIntoView({ behavior: 'smooth' }); // Yumuşak kaydırma
             }
         });
-    } else {
-        console.warn('Son Yazıları Oku butonu bulunamadı!'); // Hata ayıklama için
     }
 });
 
@@ -295,3 +299,4 @@ document.querySelector('.logo-link').addEventListener('click', function(e) {
     e.preventDefault(); // Varsayılan davranışı engelle
     window.location.href = 'index.html'; // Ana sayfaya yönlendir
 });
+
