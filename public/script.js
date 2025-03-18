@@ -167,6 +167,9 @@ async function showBlogDetail(id) {
         const blogDetailContent = document.getElementById('blogDetailContent');
         
         if (blogDetail && blogDetailContent) {
+            // Blog detayı açılmadan önce sayfanın scroll pozisyonunu kaydet
+            document.body.style.overflow = 'hidden'; // Sayfa scrollunu devre dışı bırak
+            
             blogDetailContent.innerHTML = `
                 <h2>${blog.title}</h2>
                 ${blog.imageUrl ? `<img src="${blog.imageUrl}" alt="${blog.title}" class="blog-detail-image">` : ''}
@@ -189,6 +192,7 @@ async function showBlogDetail(id) {
 // Blog detayını kapat
 function closeBlogDetail() {
     document.getElementById('blogDetail').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Sayfa scrollunu tekrar etkinleştir
 }
 
 // Sayfa yüklendiğinde
