@@ -152,22 +152,31 @@ section {
     margin-top: 30px;
 }
 
+.social-links a {
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .social-icon {
     color: #ffffff;
     font-size: 40px;
-    width: 80px; /* Sabit genişlik */
-    height: 80px; /* Sabit yükseklik - genişlikle aynı olmalı */
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background-color: #333;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    text-decoration: none; /* Ekstra güvenlik için burada da alt çizgiyi kaldır */
 }
 
 .social-icon:hover {
     transform: scale(1.3);
     background-color: #A8FF00;
+    text-decoration: none; /* Hover durumunda da alt çizgi olmamasını sağla */
 }
 
 @media (max-width: 600px) {
