@@ -779,9 +779,27 @@ section {
         gap: 20px; /* İkonlar arası boşluk */
         padding: 10px;
     }
+
+    .blog-card img {
+        height: 150px; /* Mobilde daha küçük yükseklik */
+        object-fit: cover; /* Görsel oranını koru */
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    .blog-card {
+        padding: 15px; /* Mobilde padding'i azalt */
+    }
+
+    /* Blog detay sayfasındaki görsel için */
+    .blog-detail-image {
+        max-height: 200px; /* Detay sayfasında görsel yüksekliğini sınırla */
+        width: 100%;
+        object-fit: cover;
+    }
 }
 
-/* Daha küçük mobil cihazlar için ek düzenlemeler */
+/* Daha küçük ekranlar için ek düzenleme */
 @media screen and (max-width: 480px) {
     nav ul li a {
         font-size: 1.1rem;
@@ -795,6 +813,10 @@ section {
     .logo {
         width: 35px;
         height: 35px;
+    }
+
+    .blog-card img {
+        height: 120px; /* Daha da küçük ekranlarda daha az yükseklik */
     }
 }
 
