@@ -700,6 +700,12 @@ section {
         width: 40px;
         height: 40px;
     }
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
 }
 
 /* Daha küçük mobil cihazlar için ek düzenlemeler */
