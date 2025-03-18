@@ -658,9 +658,9 @@ section {
 
 /* Kapatma butonu için stil güncellemesi */
 .close-btn {
-    position: absolute;
+    position: fixed; /* fixed kullanarak her zaman aynı pozisyonda kalmasını sağlıyoruz */
     top: 10px;
-    right: 10px; /* Sağ üst köşeye konumlandırma */
+    right: 10px;
     background: none;
     border: none;
     color: #fff;
@@ -668,7 +668,12 @@ section {
     cursor: pointer;
     padding: 5px 10px;
     transition: color 0.3s ease;
-    z-index: 1001; /* Üstte görünmesi için */
+    z-index: 1001;
+    display: flex; /* Flex kullanarak içeriği merkezleme */
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Sabit genişlik */
+    height: 40px; /* Sabit yükseklik */
 }
 
 .close-btn:hover {
@@ -678,10 +683,17 @@ section {
 /* Mobil için ek düzenleme */
 @media screen and (max-width: 768px) {
     .close-btn {
+        position: fixed; /* Mobilde de fixed pozisyonu koruyoruz */
         top: 5px;
         right: 5px;
-        font-size: 22px; /* Mobilde biraz daha küçük */
+        font-size: 22px;
         padding: 8px;
+        width: 35px; /* Mobilde biraz daha küçük */
+        height: 35px;
+    }
+
+    #blogDetail {
+        padding-top: 40px; /* Kapatma butonu için üstte boşluk bırak */
     }
 }
 
