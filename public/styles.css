@@ -636,7 +636,6 @@ section {
 
 /* Blog detay içeriği için stil güncellemesi */
 #blogDetailContent {
-    position: relative; /* Position relative ekledik */
     padding: 15px;
     margin-bottom: 20px;
     text-align: justify;
