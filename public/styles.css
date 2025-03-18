@@ -656,15 +656,33 @@ section {
     margin-bottom: 30px;
 }
 
+/* Kapatma butonu için stil güncellemesi */
 .close-btn {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 10px; /* Sağ üst köşeye konumlandırma */
     background: none;
     border: none;
     color: #fff;
     font-size: 24px;
     cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    z-index: 1001; /* Üstte görünmesi için */
+}
+
+.close-btn:hover {
+    color: #A8FF00; /* Hover durumunda yeşil renk */
+}
+
+/* Mobil için ek düzenleme */
+@media screen and (max-width: 768px) {
+    .close-btn {
+        top: 5px;
+        right: 5px;
+        font-size: 22px; /* Mobilde biraz daha küçük */
+        padding: 8px;
+    }
 }
 
 /* Blog detay sayfasındaki görsel için genel stil */
