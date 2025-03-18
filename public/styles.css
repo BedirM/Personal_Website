@@ -152,7 +152,8 @@ section {
 .social-icon {
     color: #ffffff;
     font-size: 40px;
-    padding: 20px;
+    width: 80px; /* Sabit genişlik */
+    height: 80px; /* Sabit yükseklik - genişlikle aynı olmalı */
     border-radius: 50%;
     background-color: #333;
     display: flex;
@@ -727,6 +728,21 @@ section {
         max-width: 100%;
         overflow-x: hidden;
         position: relative;
+    }
+
+    .social-icon {
+        width: 60px; /* Mobilde daha küçük ama eşit genişlik */
+        height: 60px; /* Mobilde daha küçük ama eşit yükseklik */
+        font-size: 30px; /* İkon boyutunu küçült */
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: row; /* Yatayda sırala */
+        flex-wrap: wrap; /* Gerekirse alt satıra geç */
+        justify-content: center;
+        gap: 20px; /* İkonlar arası boşluk */
+        padding: 10px;
     }
 }
 
