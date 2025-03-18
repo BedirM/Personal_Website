@@ -165,10 +165,13 @@ async function showBlogDetail(id) {
         const blog = await callAPI(`/blogs/${id}`);
         const blogDetail = document.getElementById('blogDetail');
         const blogDetailContent = document.getElementById('blogDetailContent');
+        const mainContent = document.querySelector('.container'); // Ana içerik container'ı
         
         if (blogDetail && blogDetailContent) {
-            // Blog detayı açılmadan önce sayfanın scroll pozisyonunu kaydet
-            document.body.style.overflow = 'hidden'; // Sayfa scrollunu devre dışı bırak
+            document.body.style.overflow = 'hidden';
+            
+            // Ana içeriği bulanıklaştır
+            mainContent.classList.add('blur-background');
             
             blogDetailContent.innerHTML = `
                 <h2>${blog.title}</h2>
@@ -191,8 +194,14 @@ async function showBlogDetail(id) {
 
 // Blog detayını kapat
 function closeBlogDetail() {
-    document.getElementById('blogDetail').style.display = 'none';
-    document.body.style.overflow = 'auto'; // Sayfa scrollunu tekrar etkinleştir
+    const blogDetail = document.getElementById('blogDetail');
+    const mainContent = document.querySelector('.container'); // Ana içerik container'ı
+    
+    blogDetail.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    // Bulanıklığı kaldır
+    mainContent.classList.remove('blur-background');
 }
 
 // Sayfa yüklendiğinde
