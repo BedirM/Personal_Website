@@ -124,9 +124,10 @@ nav ul {
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    padding: 0.8rem 1.5rem;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 nav ul li a:hover {
@@ -717,7 +718,7 @@ section {
     nav ul {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 0.8rem;
         width: 100%; /* Genişliği azalt */
         margin: 0 auto; /* Otomatik kenar boşluklarıyla ortala */
         padding: 0; /* Padding'i sıfırla */
@@ -732,12 +733,12 @@ section {
 
     nav ul li a {
         display: block;
-        width: 100%; /* Genişliği azalt */
-        padding: 1rem;
-        font-size: 1.2rem;
+        width: 95%;
+        padding: 1.2rem;
+        font-size: 1.4rem;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 8px;
-        margin: 0.3rem 0;
+        margin: 0.4rem 0;
     }
 
     nav ul li a:hover {
@@ -807,8 +808,8 @@ section {
 /* Daha küçük ekranlar için */
 @media screen and (max-width: 480px) {
     nav ul li a {
-        font-size: 1.1rem;
-        padding: 0.8rem;
+        font-size: 1.3rem;
+        padding: 1.1rem;
     }
 
     .site-title {
