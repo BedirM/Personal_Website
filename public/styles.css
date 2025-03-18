@@ -622,10 +622,18 @@ section {
     margin: 20px 0; /* Üst ve alttan boşluk */
 }
 
-/* Blog detay içeriği için ek stil */
+/* Blog detay içeriği için stil güncellemesi */
 #blogDetailContent {
     padding: 20px;
-    margin-bottom: 30px; /* Alt kısımda extra boşluk */
+    margin-bottom: 30px;
+    text-align: justify; /* Metni iki yana yasla */
+}
+
+#blogDetailContent .blog-content {
+    text-align: justify; /* Blog içeriğini iki yana yasla */
+    line-height: 1.6;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 /* Blog içeriği için stil */
