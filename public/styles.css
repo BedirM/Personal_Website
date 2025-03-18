@@ -108,28 +108,28 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+nav {
+    padding: 1rem;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 10px 0;
+    margin: 0;
     display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 20px;
+    gap: 2rem;
 }
 
 nav ul li a {
-    color: #00ff00;
+    color: #fff;
     text-decoration: none;
-    font-size: 25px;
-    font-weight: 400;
-    transition: color 0.3s;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #76C757;
+    color: #4CAF50;
 }
 
 section {
@@ -651,43 +651,92 @@ section {
 
 /* Mobil için medya sorguları */
 @media screen and (max-width: 768px) {
-    .logo-container {
-        margin-bottom: 120px; /* Mobilde daha fazla boşluk */
+    nav {
+        width: 100%;
+        padding: 0.5rem;
     }
 
-    .nav-buttons {
+    nav ul {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
-        margin-top: 100px; /* Logo'dan uzaklaştıralım */
-        background: rgba(0, 0, 0, 0.5); /* Mobilde arka plan */
-        padding: 15px;
-        border-radius: 10px;
+        gap: 1rem;
     }
 
-    .nav-button {
-        width: 80%;
-        max-width: 300px;
-        margin-top: 100px;
-        margin: 5px 0;
-        background: rgba(0, 0, 0, 0.8); /* Mobilde daha koyu arka plan */
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 1rem;
+        font-size: 1.2rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        margin: 0.3rem 0;
+    }
+
+    nav ul li a:hover {
+        background-color: rgba(76, 175, 80, 0.2);
+        transform: scale(1.05);
+    }
+
+    /* Header düzeni için */
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+
+    /* Logo ve başlık için */
+    .site-title {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
     }
 }
 
-/* Daha küçük ekranlar için */
+/* Daha küçük mobil cihazlar için ek düzenlemeler */
 @media screen and (max-width: 480px) {
-    .logo-container {
-        margin-bottom: 100px;
+    nav ul li a {
+        font-size: 1.1rem;
+        padding: 0.8rem;
     }
 
-    .nav-buttons {
-        margin-top: -80px;
+    .site-title {
+        font-size: 1.3rem;
     }
 
-    .nav-button {
-        width: 90%;
-        font-size: 14px;
-        padding: 8px 15px;
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Karanlık tema uyumluluğu için */
+@media (prefers-color-scheme: dark) {
+    nav ul li a {
+        color: #fff;
+    }
+
+    nav ul li a:hover {
+        color: #4CAF50;
+    }
+
+    @media screen and (max-width: 768px) {
+        nav ul li a {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(76, 175, 80, 0.3);
+        }
     }
 }
 
