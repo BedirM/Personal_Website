@@ -634,32 +634,26 @@ section {
     filter: none; /* Blog detayının bulanık olmamasını sağla */
 }
 
-/* Blog detay içeriğindeki meta bilgiler için güncelleme */
+/* Blog detay içeriği için stil güncellemesi */
 #blogDetailContent {
     padding: 15px;
     margin-bottom: 20px;
     text-align: justify;
 }
 
-#blogDetailContent .blog-meta {
-    display: flex;
-    justify-content: flex-end; /* Sağa hizala */
-    margin-top: 20px; /* Yazı ile arasında boşluk bırak */
-}
-
-#blogDetailContent .blog-meta .date {
-    font-style: italic;
-    color: #888;
-    font-size: 0.9em;
-    text-align: right; /* Metni sağa hizala */
-}
-
 #blogDetailContent .blog-content {
     text-align: justify;
-    line-height: 1.5;
+    line-height: 1.5; /* Satır aralığını azalttık */
     margin-top: 15px;
     margin-bottom: 15px;
-    white-space: pre-line;
+    white-space: pre-line; /* Gereksiz boşlukları düzeltir */
+}
+
+/* Blog içeriği için stil */
+.blog-content {
+    line-height: 1.6; /* Satır aralığını artır */
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .close-btn {
