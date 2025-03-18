@@ -521,16 +521,51 @@ section {
     padding: 20px;
 }
 
+/* Blog kartı stilleri güncelleme */
 .blog-card {
-    background: rgba(30, 30, 30, 0.8); /* Arka plan rengi ve şeffaflık */
-    border: 1px solid #333; /* Kenar rengi */
-    border-radius: 8px; /* Yuvarlatılmış köşeler */
-    padding: 20px; /* İç boşluk */
-    margin: 15px 0; /* Dış boşluk */
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    cursor: pointer; /* Tıklanabilir olduğunu göster */
+    transition: all 0.3s ease; /* Yumuşak geçiş efekti */
+    position: relative; /* Pozisyon referansı */
+    overflow: hidden; /* Taşan içeriği gizle */
 }
 
 .blog-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02); /* Hover durumunda büyüt */
+    box-shadow: 0 5px 15px rgba(168, 255, 0, 0.2); /* Yeşilimsi gölge efekti */
+    border-color: #A8FF00; /* Kenarlığı vurgula */
+}
+
+/* Tıklanabilir efekti göstermek için ek gösterge */
+.blog-card::after {
+    content: "Detaylar için tıklayın";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(168, 255, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.blog-card:hover::after {
+    opacity: 1;
+}
+
+/* Blog kartı içindeki başlık için hover efekti */
+.blog-card h3 {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.blog-card:hover h3 {
+    color: #A8FF00;
 }
 
 .blog-card img {
