@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body {
-    background: #121212;
-    font-family: 'Poppins', sans-serif;
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important; /* !important ile her durumda yatay kaydırmayı engelle */
     margin: 0;
     padding: 0;
+    position: relative;
+    background: #121212;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh; /* Sayfanın en az 100vh yüksekliğinde olmasını sağlar */
-    overflow-x: hidden;
     color: #ffffff;
 }
 
@@ -67,6 +70,9 @@ body {
     z-index: 1;
     animation: fadeIn 2s ease-in-out, zoomIn 1.5s ease-in-out;
     opacity: 0;
+    overflow-x: hidden; /* Container'larda da yatay kaydırmayı engelle */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Başlık Animasyonu */
@@ -140,6 +146,8 @@ section {
     margin-top: 80px;
     width: 80%;
     max-width: 700px;
+    overflow-x: hidden; /* Section'larda da yatay kaydırmayı engelle */
+    box-sizing: border-box;
 }
 
 .social-links {
@@ -611,11 +619,11 @@ section {
     border-radius: 8px;
     max-width: 800px;
     width: 90%;
-    max-height: 80vh; /* Ekran yüksekliğinin %80'i kadar olacak */
+    height: 80vh;
     overflow-y: auto;
+    overflow-x: hidden; /* Yatay kaydırmayı engelle */
     z-index: 1000;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    margin: 20px 0; /* Üst ve alttan boşluk */
 }
 
 /* Blog detay içeriği için ek stil */
@@ -651,22 +659,23 @@ section {
     margin: 20px 0;
 }
 
-/* Karanlık tema uyumlu scrollbar */
+/* Scroll çubuğu stilini özelleştir */
 #blogDetail::-webkit-scrollbar {
     width: 8px;
 }
 
 #blogDetail::-webkit-scrollbar-track {
-    background: #1e1e1e;
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
 }
 
 #blogDetail::-webkit-scrollbar-thumb {
-    background: #444;
+    background: rgba(76, 175, 80, 0.5);
     border-radius: 4px;
 }
 
 #blogDetail::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgba(76, 175, 80, 0.7);
 }
 
 /* Üst menü için responsive düzenleme */
