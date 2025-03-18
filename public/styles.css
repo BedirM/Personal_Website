@@ -1,18 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    position: relative;
+body {
     background: #121212;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh; /* Sayfanın en az 100vh yüksekliğinde olmasını sağlar */
+    overflow-x: hidden;
     color: #ffffff;
 }
 
@@ -136,15 +133,13 @@ nav ul li a:hover {
 }
 
 section {
-    width: 100%;
-    max-width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    padding: 150px;
     background: #121212;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 80px;
+    width: 80%;
+    max-width: 700px;
 }
 
 .social-links {
@@ -705,10 +700,6 @@ section {
         width: 40px;
         height: 40px;
     }
-
-    section {
-        padding: 15px;
-    }
 }
 
 /* Daha küçük mobil cihazlar için ek düzenlemeler */
@@ -823,11 +814,9 @@ button:hover {
     position: fixed; /* Sabit konumlandırma */
     top: 0;
     left: 0;
-    width: 100vw;
-    max-width: 100%;
+    width: 100vw; /* Tam genişlik */
     height: 100vh; /* Tam yükseklik */
     z-index: -1; /* Yıldızların arka planda görünmesi için */
-    overflow: hidden;
 }
 
 .logo-link {
