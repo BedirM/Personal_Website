@@ -784,7 +784,7 @@ section {
     }
 
     .blog-card img {
-        height: 120px; /* 140px'den 120px'e düşürdük */
+        height: 100px; /* 120px'den 100px'e düşürdük */
         width: 100%;
         object-fit: cover;
     }
@@ -795,7 +795,7 @@ section {
 
     /* Blog detay sayfasındaki görsel için */
     .blog-detail-image {
-        max-height: 150px; /* 180px'den 150px'e düşürdük */
+        max-height: 130px; /* 150px'den 130px'e düşürdük */
         width: 100%;
         object-fit: cover;
     }
@@ -818,11 +818,11 @@ section {
     }
 
     .blog-card img {
-        height: 100px; /* 120px'den 100px'e düşürdük */
+        height: 80px; /* 100px'den 80px'e düşürdük */
     }
 
     .blog-detail-image {
-        max-height: 130px; /* Daha küçük ekranlar için ek düşürme */
+        max-height: 110px; /* 130px'den 110px'e düşürdük */
     }
 }
 
