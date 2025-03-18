@@ -615,12 +615,12 @@ section {
     border-radius: 8px;
     max-width: 800px;
     width: 90%;
-    max-height: 80vh; /* Ekran yüksekliğinin %80'i kadar olacak */
+    max-height: 80vh;
     overflow-y: auto;
-    overflow-x: hidden; /* Yatay kaydırmayı engelle */
+    overflow-x: hidden;
     z-index: 1000;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    margin: 20px 0; /* Üst ve alttan boşluk */
+    margin: 20px 0;
 }
 
 /* Blog detay içeriği için stil güncellemesi */
@@ -1076,4 +1076,10 @@ button:hover {
     .welcome-subtitle {
         font-size: 1.1em;
     }
+}
+
+/* Bulanıklaştırma efekti için yeni stil */
+.blur-background {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
 }
