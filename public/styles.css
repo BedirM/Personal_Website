@@ -642,26 +642,23 @@ section {
 }
 
 #blogDetailContent .blog-meta {
-    position: absolute; /* Mutlak konumlandırma */
-    bottom: 10px; /* Alttan mesafe */
-    right: 15px; /* Sağdan mesafe */
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
+    justify-content: flex-end; /* Sağa hizala */
+    margin-top: 20px; /* Yazı ile arasında boşluk bırak */
 }
 
 #blogDetailContent .blog-meta .date {
     font-style: italic;
     color: #888;
     font-size: 0.9em;
+    text-align: right; /* Metni sağa hizala */
 }
 
 #blogDetailContent .blog-content {
     text-align: justify;
     line-height: 1.5;
     margin-top: 15px;
-    margin-bottom: 40px; /* Tarih için alt boşluk bırakıyoruz */
+    margin-bottom: 15px;
     white-space: pre-line;
 }
 
