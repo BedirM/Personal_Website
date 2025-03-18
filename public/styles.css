@@ -584,7 +584,7 @@ section {
 /* Blog kartlarındaki görseller için genel stil */
 .blog-card img {
     width: 100%;
-    height: 140px; /* Masaüstü için yüksekliği 180px'den 140px'e düşürdük */
+    height: 180px; /* Masaüstü için varsayılan yükseklik azaltıldı */
     object-fit: cover;
     border-radius: 6px;
 }
@@ -669,7 +669,7 @@ section {
 
 /* Blog detay sayfasındaki görsel için genel stil */
 .blog-detail-image {
-    max-height: 250px; /* Masaüstü için maksimum yüksekliği 300px'den 250px'e düşürdük */
+    max-height: 300px; /* Masaüstü için maksimum yükseklik azaltıldı */
     width: 100%;
     object-fit: cover;
     border-radius: 8px;
@@ -809,7 +809,7 @@ section {
     }
 
     .blog-card img {
-        height: 80px; /* Mobilde yüksekliği 100px'den 80px'e düşürdük */
+        height: 100px; /* 120px'den 100px'e düşürdük */
         width: 100%;
         object-fit: cover;
     }
@@ -820,7 +820,7 @@ section {
 
     /* Blog detay sayfasındaki görsel için */
     .blog-detail-image {
-        max-height: 120px; /* Mobilde maksimum yüksekliği 130px'den 120px'e düşürdük */
+        max-height: 130px; /* 150px'den 130px'e düşürdük */
         width: 100%;
         object-fit: cover;
     }
@@ -845,6 +845,14 @@ section {
         font-size: 1.4em; /* Başlık boyutunu küçülttük */
         margin-bottom: 10px;
     }
+
+    .blog-card .blog-content p {
+        text-align: justify; /* Mobilde de iki yana hizalama */
+        font-size: 14px; /* Mobilde font boyutunu küçült */
+        line-height: 1.4; /* Satır aralığını biraz azalt */
+        padding: 0 5px; /* Yanlarda minimal boşluk */
+        margin: 8px 0;
+    }
 }
 
 /* Daha küçük ekranlar için */
@@ -864,11 +872,15 @@ section {
     }
 
     .blog-card img {
-        height: 70px; /* En küçük ekranlarda 80px'den 70px'e düşürdük */
+        height: 80px; /* 100px'den 80px'e düşürdük */
     }
 
     .blog-detail-image {
-        max-height: 100px; /* En küçük ekranlarda 110px'den 100px'e düşürdük */
+        max-height: 110px; /* 130px'den 110px'e düşürdük */
+    }
+
+    .blog-card .blog-content p {
+        font-size: 13px; /* En küçük ekranlarda font boyutunu biraz daha küçült */
     }
 }
 
@@ -1119,5 +1131,30 @@ button:hover {
         max-height: 250px; /* Mobilde maksimum yükseklik */
         font-size: 16px;
         padding: 15px;
+    }
+}
+
+/* Blog kartı içeriği için genel stil */
+.blog-card .blog-content p {
+    text-align: justify; /* İki yana hizalama */
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* Mobil cihazlar için medya sorgusu */
+@media screen and (max-width: 768px) {
+    .blog-card .blog-content p {
+        text-align: justify; /* Mobilde de iki yana hizalama */
+        font-size: 14px; /* Mobilde font boyutunu küçült */
+        line-height: 1.4; /* Satır aralığını biraz azalt */
+        padding: 0 5px; /* Yanlarda minimal boşluk */
+        margin: 8px 0;
+    }
+}
+
+/* Daha küçük ekranlar için */
+@media screen and (max-width: 480px) {
+    .blog-card .blog-content p {
+        font-size: 13px; /* En küçük ekranlarda font boyutunu biraz daha küçült */
     }
 }
