@@ -624,16 +624,17 @@ section {
 
 /* Blog detay içeriği için stil güncellemesi */
 #blogDetailContent {
-    padding: 20px;
-    margin-bottom: 30px;
-    text-align: justify; /* Metni iki yana yasla */
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: justify;
 }
 
 #blogDetailContent .blog-content {
-    text-align: justify; /* Blog içeriğini iki yana yasla */
-    line-height: 1.6;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    text-align: justify;
+    line-height: 1.5; /* Satır aralığını azalttık */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    white-space: pre-line; /* Gereksiz boşlukları düzeltir */
 }
 
 /* Blog içeriği için stil */
@@ -810,6 +811,27 @@ section {
         max-height: 130px; /* 150px'den 130px'e düşürdük */
         width: 100%;
         object-fit: cover;
+    }
+
+    #blogDetail {
+        width: 95%; /* Genişliği artırdık */
+        padding: 15px 10px; /* Yanlardaki padding'i azalttık */
+    }
+
+    #blogDetailContent {
+        padding: 10px 5px; /* Yanlardaki padding'i azalttık */
+    }
+
+    #blogDetailContent .blog-content {
+        width: 100%; /* Tam genişlik */
+        padding: 0 5px; /* Yanlarda minimal padding */
+        text-align: justify;
+        line-height: 1.4; /* Mobilde satır aralığını biraz daha azalttık */
+    }
+
+    #blogDetailContent h2 {
+        font-size: 1.4em; /* Başlık boyutunu küçülttük */
+        margin-bottom: 10px;
     }
 }
 
