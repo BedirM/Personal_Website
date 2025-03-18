@@ -760,103 +760,60 @@ section {
 /* Mobil cihazlar için medya sorgusu */
 @media screen and (max-width: 768px) {
     nav {
-        width: 100%;
-        padding: 0;
         position: fixed;
         bottom: 0;
         left: 0;
+        width: 100%;
         background: rgba(18, 18, 18, 0.95);
         backdrop-filter: blur(10px);
         border-top: 1px solid rgba(168, 255, 0, 0.2);
         z-index: 1000;
+        padding: 10px 0;
     }
 
     nav ul {
         display: flex;
-        flex-direction: row; /* Yatayda sırala */
+        flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        padding: 10px 0;
         margin: 0;
-        width: 100%;
-        gap: 0;
+        padding: 0;
     }
 
     nav ul li {
-        width: auto;
         margin: 0;
     }
 
     nav ul li a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        color: #888;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 0.8rem;
-        padding: 8px 12px;
-        background: none;
-        position: relative;
-        color: #888;
+        text-align: center;
     }
 
-    /* Menü ikonları için */
     nav ul li a::before {
-        content: '';
-        font-family: 'Material Icons';
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: 4px;
     }
 
-    /* Her menü öğesi için özel ikon */
-    nav ul li:nth-child(1) a::before {
-        content: '🏠';
-    }
+    /* Menü ikonları */
+    nav ul li:nth-child(1) a::before { content: '🏠'; }
+    nav ul li:nth-child(2) a::before { content: '👤'; }
+    nav ul li:nth-child(3) a::before { content: '📝'; }
+    nav ul li:nth-child(4) a::before { content: '✉️'; }
 
-    nav ul li:nth-child(2) a::before {
-        content: '👤';
-    }
-
-    nav ul li:nth-child(3) a::before {
-        content: '📝';
-    }
-
-    nav ul li:nth-child(4) a::before {
-        content: '✉️';
-    }
-
-    /* Aktif menü öğesi için stil */
+    /* Aktif menü öğesi */
     nav ul li a.active,
     nav ul li a:hover {
         color: #A8FF00;
-        background: none;
-        transform: none;
     }
 
-    /* Aktif menü öğesi için alt çizgi */
-    nav ul li a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: #A8FF00;
-        transition: all 0.3s ease;
-        transform: translateX(-50%);
-    }
-
-    nav ul li a:hover::after,
-    nav ul li a.active::after {
-        width: 70%;
-    }
-
-    /* Ana içerik için bottom padding ekle */
+    /* Sayfanın alt kısmında menü için boşluk bırak */
     body {
         padding-bottom: 70px;
-    }
-
-    /* Scroll davranışını düzelt */
-    html {
-        scroll-padding-bottom: 70px;
     }
 }
 
