@@ -573,10 +573,24 @@ section {
     border-radius: 8px;
     max-width: 800px;
     width: 90%;
-    max-height: 100vh;
+    max-height: 80vh; /* Ekran yüksekliğinin %80'i kadar olacak */
     overflow-y: auto;
     z-index: 1000;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin: 20px 0; /* Üst ve alttan boşluk */
+}
+
+/* Blog detay içeriği için ek stil */
+#blogDetailContent {
+    padding: 20px;
+    margin-bottom: 30px; /* Alt kısımda extra boşluk */
+}
+
+/* Blog içeriği için stil */
+.blog-content {
+    line-height: 1.6; /* Satır aralığını artır */
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .close-btn {
