@@ -584,7 +584,7 @@ section {
 /* Blog kartlarındaki görseller için genel stil */
 .blog-card img {
     width: 100%;
-    height: 180px; /* Masaüstü için varsayılan yükseklik azaltıldı */
+    height: 140px; /* Masaüstü için yüksekliği 180px'den 140px'e düşürdük */
     object-fit: cover;
     border-radius: 6px;
 }
@@ -669,7 +669,7 @@ section {
 
 /* Blog detay sayfasındaki görsel için genel stil */
 .blog-detail-image {
-    max-height: 300px; /* Masaüstü için maksimum yükseklik azaltıldı */
+    max-height: 250px; /* Masaüstü için maksimum yüksekliği 300px'den 250px'e düşürdük */
     width: 100%;
     object-fit: cover;
     border-radius: 8px;
@@ -809,7 +809,7 @@ section {
     }
 
     .blog-card img {
-        height: 100px; /* 120px'den 100px'e düşürdük */
+        height: 80px; /* Mobilde yüksekliği 100px'den 80px'e düşürdük */
         width: 100%;
         object-fit: cover;
     }
@@ -820,7 +820,7 @@ section {
 
     /* Blog detay sayfasındaki görsel için */
     .blog-detail-image {
-        max-height: 130px; /* 150px'den 130px'e düşürdük */
+        max-height: 120px; /* Mobilde maksimum yüksekliği 130px'den 120px'e düşürdük */
         width: 100%;
         object-fit: cover;
     }
@@ -864,11 +864,11 @@ section {
     }
 
     .blog-card img {
-        height: 80px; /* 100px'den 80px'e düşürdük */
+        height: 70px; /* En küçük ekranlarda 80px'den 70px'e düşürdük */
     }
 
     .blog-detail-image {
-        max-height: 110px; /* 130px'den 110px'e düşürdük */
+        max-height: 100px; /* En küçük ekranlarda 110px'den 100px'e düşürdük */
     }
 }
 
