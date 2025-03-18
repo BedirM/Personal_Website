@@ -180,7 +180,6 @@ async function showBlogDetail(id) {
             `;
             
             blogDetail.style.display = 'block';
-            window.scrollTo(0, 0);
         }
     } catch (error) {
         console.error('Blog detayı yüklenemedi:', error);
