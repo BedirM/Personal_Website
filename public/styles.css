@@ -975,9 +975,73 @@ button:hover {
 }
 
 #welcome {
-    text-align: center; /* Metni ortala */
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 800px;
+    position: relative;
 }
 
-#welcome p {
-    margin: 20px 0; /* Üst ve alt boşluk ekle */
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.welcome-title {
+    font-size: 2.5em;
+    color: #A8FF00;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(168, 255, 0, 0.3);
+}
+
+.welcome-subtitle {
+    font-size: 1.2em;
+    color: #ffffff;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.welcome-description {
+    color: #cccccc;
+    line-height: 1.8;
+    margin: 20px 0;
+}
+
+#readLatestPosts {
+    background: transparent;
+    border: 2px solid #A8FF00;
+    color: #A8FF00;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+#readLatestPosts:hover {
+    background: #A8FF00;
+    color: #121212;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(168, 255, 0, 0.3);
+}
+
+/* Mobil uyumluluk */
+@media screen and (max-width: 768px) {
+    #welcome {
+        padding: 40px 15px;
+    }
+
+    .welcome-title {
+        font-size: 2em;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.1em;
+    }
 }
