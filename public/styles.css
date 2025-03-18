@@ -760,60 +760,127 @@ section {
 /* Mobil cihazlar için medya sorgusu */
 @media screen and (max-width: 768px) {
     nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
         width: 100%;
-        background: rgba(18, 18, 18, 0.95);
-        backdrop-filter: blur(10px);
-        border-top: 1px solid rgba(168, 255, 0, 0.2);
-        z-index: 1000;
         padding: 10px 0;
+        display: flex;
+        justify-content: center;
     }
 
     nav ul {
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: column;
         align-items: center;
-        margin: 0;
+        gap: 10px;
+        width: 80%; /* Genişliği azalttık */
+        margin: 0 auto;
         padding: 0;
     }
 
     nav ul li {
-        margin: 0;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-        color: #888;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        width: 100%;
         text-align: center;
     }
 
-    nav ul li a::before {
-        font-size: 1.4rem;
-        margin-bottom: 4px;
+    nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 8px 0; /* Padding'i azalttık */
+        font-size: 1.1rem; /* Font boyutunu küçülttük */
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+        margin: 2px 0;
     }
 
-    /* Menü ikonları */
-    nav ul li:nth-child(1) a::before { content: '🏠'; }
-    nav ul li:nth-child(2) a::before { content: '👤'; }
-    nav ul li:nth-child(3) a::before { content: '📝'; }
-    nav ul li:nth-child(4) a::before { content: '✉️'; }
-
-    /* Aktif menü öğesi */
-    nav ul li a.active,
     nav ul li a:hover {
-        color: #A8FF00;
+        background-color: rgba(76, 175, 80, 0.2);
+        transform: scale(1.02); /* Hover efektini azalttık */
     }
 
-    /* Sayfanın alt kısmında menü için boşluk bırak */
-    body {
-        padding-bottom: 70px;
+    /* Header düzeni için */
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+
+    /* Logo ve başlık için */
+    .site-title {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .social-icon {
+        width: 60px; /* Mobilde daha küçük ama eşit genişlik */
+        height: 60px; /* Mobilde daha küçük ama eşit yükseklik */
+        font-size: 30px; /* İkon boyutunu küçült */
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: row; /* Yatayda sırala */
+        flex-wrap: wrap; /* Gerekirse alt satıra geç */
+        justify-content: center;
+        gap: 20px; /* İkonlar arası boşluk */
+        padding: 10px;
+    }
+
+    .blog-card img {
+        height: 100px; /* 120px'den 100px'e düşürdük */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .blog-card {
+        padding: 15px; /* Mobilde padding'i azalt */
+    }
+
+    /* Blog detay sayfasındaki görsel için */
+    .blog-detail-image {
+        max-height: 130px; /* 150px'den 130px'e düşürdük */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    #blogDetail {
+        width: 95%; /* Genişliği artırdık */
+        padding: 15px 10px; /* Yanlardaki padding'i azalttık */
+    }
+
+    #blogDetailContent {
+        padding: 10px 5px; /* Yanlardaki padding'i azalttık */
+    }
+
+    #blogDetailContent .blog-content {
+        width: 100%; /* Tam genişlik */
+        padding: 0 5px; /* Yanlarda minimal padding */
+        text-align: justify;
+        line-height: 1.4; /* Mobilde satır aralığını biraz daha azalttık */
+    }
+
+    #blogDetailContent h2 {
+        font-size: 1.4em; /* Başlık boyutunu küçülttük */
+        margin-bottom: 10px;
+    }
+
+    .blog-card .blog-content p {
+        text-align: justify; /* Mobilde de iki yana hizalama */
+        font-size: 14px; /* Mobilde font boyutunu küçült */
+        line-height: 1.4; /* Satır aralığını biraz azalt */
+        padding: 0 5px; /* Yanlarda minimal boşluk */
+        margin: 8px 0;
     }
 }
 
