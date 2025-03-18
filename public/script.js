@@ -165,13 +165,17 @@ async function showBlogDetail(id) {
         const blog = await callAPI(`/blogs/${id}`);
         const blogDetail = document.getElementById('blogDetail');
         const blogDetailContent = document.getElementById('blogDetailContent');
-        const mainContent = document.querySelector('.container'); // Ana içerik container'ı
+        
+        // Bulanıklaştırılacak tüm içeriği seç
+        const mainContent = document.querySelector('body > *:not(#blogDetail)');
         
         if (blogDetail && blogDetailContent) {
             document.body.style.overflow = 'hidden';
             
             // Ana içeriği bulanıklaştır
-            mainContent.classList.add('blur-background');
+            if (mainContent) {
+                mainContent.classList.add('blur-background');
+            }
             
             blogDetailContent.innerHTML = `
                 <h2>${blog.title}</h2>
@@ -195,13 +199,19 @@ async function showBlogDetail(id) {
 // Blog detayını kapat
 function closeBlogDetail() {
     const blogDetail = document.getElementById('blogDetail');
-    const mainContent = document.querySelector('.container'); // Ana içerik container'ı
+    // Bulanıklaştırılmış tüm içeriği seç
+    const mainContent = document.querySelector('body > *:not(#blogDetail)');
     
-    blogDetail.style.display = 'none';
+    if (blogDetail) {
+        blogDetail.style.display = 'none';
+    }
+    
     document.body.style.overflow = 'auto';
     
     // Bulanıklığı kaldır
-    mainContent.classList.remove('blur-background');
+    if (mainContent) {
+        mainContent.classList.remove('blur-background');
+    }
 }
 
 // Sayfa yüklendiğinde
