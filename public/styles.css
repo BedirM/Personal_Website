@@ -621,6 +621,8 @@ section {
     z-index: 1000;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     margin: 20px 0;
+    backdrop-filter: none; /* Blog detayının bulanık olmamasını sağla */
+    filter: none; /* Blog detayının bulanık olmamasını sağla */
 }
 
 /* Blog detay içeriği için stil güncellemesi */
@@ -1078,8 +1080,9 @@ button:hover {
     }
 }
 
-/* Bulanıklaştırma efekti için yeni stil */
+/* Bulanıklaştırma efekti için stil güncelleme */
 .blur-background {
-    filter: blur(5px);
+    filter: blur(8px); /* Bulanıklık değerini artırdık */
     transition: filter 0.3s ease;
+    pointer-events: none; /* Bulanık elemanlara tıklamayı engelle */
 }
