@@ -702,7 +702,7 @@ section {
     transition: transform 0.3s;
 }
 
-/* Mobil için medya sorguları */
+/* Mobil cihazlar için medya sorgusu */
 @media screen and (max-width: 768px) {
     nav {
         width: 105%;
@@ -784,7 +784,9 @@ section {
     }
 
     .blog-card img {
-        height: 140px; /* Mobil için yükseklik */
+        height: 120px; /* 140px'den 120px'e düşürdük */
+        width: 100%;
+        object-fit: cover;
     }
 
     .blog-card {
@@ -793,11 +795,13 @@ section {
 
     /* Blog detay sayfasındaki görsel için */
     .blog-detail-image {
-        max-height: 180px; /* Mobil için maksimum yükseklik */
+        max-height: 150px; /* 180px'den 150px'e düşürdük */
+        width: 100%;
+        object-fit: cover;
     }
 }
 
-/* Daha küçük ekranlar için ek düzenleme */
+/* Daha küçük ekranlar için */
 @media screen and (max-width: 480px) {
     nav ul li a {
         font-size: 1.1rem;
@@ -814,7 +818,11 @@ section {
     }
 
     .blog-card img {
-        height: 120px; /* Daha küçük ekranlar için yükseklik */
+        height: 100px; /* 120px'den 100px'e düşürdük */
+    }
+
+    .blog-detail-image {
+        max-height: 130px; /* Daha küçük ekranlar için ek düşürme */
     }
 }
 
