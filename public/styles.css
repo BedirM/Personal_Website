@@ -634,7 +634,7 @@ section {
     filter: none; /* Blog detayının bulanık olmamasını sağla */
 }
 
-/* Blog detay içeriği için stil güncellemesi */
+/* Blog detay içeriğindeki meta bilgiler için güncelleme */
 #blogDetailContent {
     padding: 15px;
     margin-bottom: 20px;
@@ -660,13 +660,6 @@ section {
     margin-top: 15px;
     margin-bottom: 15px;
     white-space: pre-line;
-}
-
-/* Blog içeriği için stil */
-.blog-content {
-    line-height: 1.6; /* Satır aralığını artır */
-    margin-top: 20px;
-    margin-bottom: 30px;
 }
 
 .close-btn {
