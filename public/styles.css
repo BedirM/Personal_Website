@@ -561,14 +561,15 @@ section {
     opacity: 1;
 }
 
-/* Blog kartı içindeki başlık için hover efekti */
+/* Blog kartı içindeki başlık için stil güncelleme */
 .blog-card h3 {
-    color: #fff;
+    color: #A8FF00; /* Yeşil renk */
+    margin-bottom: 10px;
     transition: color 0.3s ease;
 }
 
 .blog-card:hover h3 {
-    color: #A8FF00;
+    color: #76C757; /* Hover durumunda daha koyu yeşil */
 }
 
 /* Blog kartlarındaki görseller için genel stil */
