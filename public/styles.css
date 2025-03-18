@@ -666,7 +666,7 @@ section {
 /* Mobil için medya sorguları */
 @media screen and (max-width: 768px) {
     nav {
-        width: 100%;
+        width: 102%;
         padding: 0.5rem;
         display: flex;
         justify-content: center; /* Navigasyonu ortala */
@@ -682,7 +682,7 @@ section {
     }
 
     nav ul li {
-        width: 100%;
+        width: 102%;
         text-align: center;
         display: flex;
         justify-content: center; /* Li elementlerini ortala */
