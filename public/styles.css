@@ -1095,3 +1095,29 @@ button:hover {
     transition: filter 0.3s ease;
     pointer-events: none; /* Bulanık elemanlara tıklamayı engelle */
 }
+
+#contactForm textarea {
+    width: 100%;
+    max-width: 600px; /* Maksimum genişlik */
+    min-height: 150px; /* Minimum yükseklik */
+    max-height: 300px; /* Maksimum yükseklik */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    font-size: 18px;
+    resize: vertical; /* Sadece dikey yönde yeniden boyutlandırma */
+    overflow-y: auto; /* Dikey kaydırma çubuğu ekle */
+}
+
+/* Mobil cihazlar için düzenleme */
+@media screen and (max-width: 768px) {
+    #contactForm textarea {
+        max-width: 100%;
+        min-height: 120px; /* Mobilde minimum yükseklik */
+        max-height: 250px; /* Mobilde maksimum yükseklik */
+        font-size: 16px;
+        padding: 15px;
+    }
+}
