@@ -784,7 +784,7 @@ section {
         font-size: 1.1rem;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 4px;
-        margin: 2px 50px; /* Sağ ve sol margin'i artırdık */
+        margin: 2px 40px; /* Sağ ve sol margin'i artırdık */
         text-align: center;
     }
 
