@@ -1236,3 +1236,25 @@ button:hover {
         top: -30px;
     }
 }
+
+@media (max-width: 768px) {
+    #hakkimda {
+        padding: 40px;
+        background: rgba(30, 30, 30, 0.7);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-top: 100px; /* Hakkımda başlığı ile profil fotoğrafı arasındaki boşluğu artırdık */
+        margin-bottom: 40px;
+        width: 90%;
+        max-width: 100%;
+        min-height: 750px; /* Kartın boyunu uzattık */
+        position: relative;
+        color: #ffffff;
+        text-align: center;
+        padding-top: 240px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
+    }
+
+    .profile-container {
+        top: 80px; /* Profil fotoğrafını daha da aşağı çektik */
+    }
+}
