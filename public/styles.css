@@ -293,7 +293,7 @@ section {
     background: rgba(30, 30, 30, 0.7);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 200px;
+    margin-top: 80px;
     margin-bottom: 40px;
     width: 80%;
     max-width: 800px;
@@ -301,12 +301,12 @@ section {
     position: relative;
     color: #ffffff;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 100px;
 }
 
 .profile-container {
     position: absolute;
-    top: -150px;
+    top: -50px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -1215,11 +1215,11 @@ button:hover {
     }
 
     #hakkimda {
-        margin-top: 150px;
+        margin-top: 60px;
         padding-top: 60px;
     }
 
     .profile-container {
-        top: -120px;
+        top: -40px;
     }
 }
