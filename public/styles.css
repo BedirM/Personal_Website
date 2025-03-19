@@ -139,7 +139,7 @@ section {
     background: #121212;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 80px;
+    margin-top: 60px;
     width: 80%;
     max-width: 700px;
     overflow-x: hidden;
@@ -243,7 +243,8 @@ section {
     }
 
     section {
-        padding: 50px; /* İç boşluğu azalt */
+        padding: 40px;
+        margin-top: 40px;
     }
 }
 
