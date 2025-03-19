@@ -293,15 +293,15 @@ section {
     background: rgba(30, 30, 30, 0.7);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 95px; /* Profil fotoğrafı için üstte daha fazla boşluk bırak */
+    margin-top: 95px;
     margin-bottom: 40px;
     width: 80%;
-    max-width: 700px;
+    max-width: 800px;
+    min-height: 400px;
     position: relative;
     color: #ffffff;
-    max-height: none;
     text-align: center;
-    padding-top: 80px; /* Üst padding'i azalttık */
+    padding-top: 80px;
 }
 
 .profile-container {
@@ -1047,7 +1047,9 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(168, 255, 0, 0.2);
 }
 
 .skill-card {
@@ -1204,10 +1206,13 @@ button:hover {
     }
 
     #hakkimda {
-        padding-top: 75px; /* Mobilde üst padding'i azalt */
+        width: 90%;
+        min-height: 350px;
+        padding: 30px 20px;
+        padding-top: 75px;
     }
 
-    .profile-container {
-        top: -60px; /* Mobilde daha az yukarı çık */
+    .skills-container {
+        margin-top: 40px;
     }
 }
