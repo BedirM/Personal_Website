@@ -293,7 +293,7 @@ section {
     background: rgba(30, 30, 30, 0.7);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 80px;
+    margin-top: 70px;
     margin-bottom: 40px;
     width: 80%;
     max-width: 800px;
@@ -306,7 +306,7 @@ section {
 
 .profile-container {
     position: absolute;
-    top: -50px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -1215,11 +1215,11 @@ button:hover {
     }
 
     #hakkimda {
-        margin-top: 60px;
+        margin-top: 40px;
         padding-top: 60px;
     }
 
     .profile-container {
-        top: -40px;
+        top: -30px;
     }
 }
