@@ -1255,6 +1255,6 @@ button:hover {
     }
 
     .profile-container {
-        top: 60px; /* Profil fotoğrafını daha da aşağı çektik */
+        top: 20px; /* Profil fotoğrafını daha da aşağı çektik */
     }
 }
