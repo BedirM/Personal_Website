@@ -306,7 +306,7 @@ section {
 
 .profile-container {
     position: absolute;
-    top: -20px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
