@@ -220,10 +220,23 @@ section {
     }
 
     #hakkimda {
+        padding: 40px;
+        background: rgba(30, 30, 30, 0.7);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-top: 70px;
+        margin-bottom: 40px;
         width: 90%;
         max-width: 100%;
-        margin-top: 50px;
-        padding-top: 40px;
+        min-height: 750px; /* Kartın boyunu uzattık */
+        position: relative;
+        color: #ffffff;
+        text-align: center;
+        padding-top: 180px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
+    }
+
+    .profile-container {
+        top: 20px; /* Profil fotoğrafını aşağı çektik */
     }
 
     .edit-link {
