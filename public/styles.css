@@ -301,11 +301,15 @@ section {
     color: #ffffff;
     max-height: none;
     text-align: center;
+    padding-top: 100px; /* Profil resmi için üstte boşluk bırak */
 }
 
 .profile-container {
+    position: absolute; /* Mutlak konumlandırma */
+    top: -75px; /* Yarı yüksekliği kadar yukarı çık */
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .profile-photo {
@@ -315,7 +319,6 @@ section {
     border: 2px solid #A8FF00;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     object-fit: cover;
-    margin-bottom: 20px;
 }
 
 .edit-link {
@@ -1200,6 +1203,10 @@ button:hover {
     }
 
     #hakkimda {
-        padding: 30px 20px;
+        padding-top: 80px; /* Mobilde üst padding'i azalt */
+    }
+
+    .profile-container {
+        top: -60px; /* Mobilde daha az yukarı çık */
     }
 }
