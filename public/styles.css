@@ -293,7 +293,7 @@ section {
     background: rgba(30, 30, 30, 0.7);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    margin-top: 95px; /* Profil fotoğrafı için üstte daha fazla boşluk bırak */
     margin-bottom: 40px;
     width: 80%;
     max-width: 700px;
@@ -301,15 +301,16 @@ section {
     color: #ffffff;
     max-height: none;
     text-align: center;
-    padding-top: 100px; /* Profil resmi için üstte boşluk bırak */
+    padding-top: 80px; /* Üst padding'i azalttık */
 }
 
 .profile-container {
-    position: absolute; /* Mutlak konumlandırma */
+    position: absolute;
     top: -75px; /* Yarı yüksekliği kadar yukarı çık */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    z-index: 1; /* Fotoğrafın üstte görünmesi için */
 }
 
 .profile-photo {
@@ -1203,7 +1204,7 @@ button:hover {
     }
 
     #hakkimda {
-        padding-top: 80px; /* Mobilde üst padding'i azalt */
+        padding-top: 75px; /* Mobilde üst padding'i azalt */
     }
 
     .profile-container {
