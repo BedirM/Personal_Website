@@ -297,7 +297,7 @@ section {
     margin-bottom: 40px;
     width: 80%;
     max-width: 800px;
-    min-height: 1000px; /* Kartın boyunu uzattık */
+    min-height: 750px; /* Kartın boyunu uzattık */
     position: relative;
     color: #ffffff;
     text-align: center;
