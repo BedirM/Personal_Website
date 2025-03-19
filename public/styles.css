@@ -780,11 +780,11 @@ section {
     nav ul li a {
         display: block;
         width: calc(100% - 30px); /* Sağ ve sol boşluk için genişliği ayarla */
-        padding: 25px 15px; /* Sağ ve sol padding'i artırdık */
+        padding: 25px 8px; /* Sağ ve sol padding'i artırdık */
         font-size: 1.1rem;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 4px;
-        margin: 2px 20px; /* Sağ ve sol margin'i artırdık */
+        margin: 15px 8px; /* Sağ ve sol margin'i artırdık */
         text-align: center;
     }
 
