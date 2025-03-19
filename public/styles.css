@@ -1243,7 +1243,7 @@ button:hover {
         background: rgba(30, 30, 30, 0.7);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        margin-top: 100px; /* Hakkımda başlığı ile profil fotoğrafı arasındaki boşluğu artırdık */
+        margin-top: 60px; /* Hakkımda başlığı ile profil fotoğrafı arasındaki boşluğu artırdık */
         margin-bottom: 40px;
         width: 90%;
         max-width: 100%;
@@ -1251,10 +1251,10 @@ button:hover {
         position: relative;
         color: #ffffff;
         text-align: center;
-        padding-top: 240px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
+        padding-top: 200px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
     }
 
     .profile-container {
-        top: 20px; /* Profil fotoğrafını daha da aşağı çektik */
+        top: 60px; /* Profil fotoğrafını daha da aşağı çektik */
     }
 }
