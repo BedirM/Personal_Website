@@ -757,7 +757,7 @@ section {
     transition: transform 0.3s;
 }
 
-/* Mobil cihazlar için medya sorgusu */
+/* Mobil menü için düzenleme */
 @media screen and (max-width: 768px) {
     nav {
         width: 100%;
@@ -767,24 +767,26 @@ section {
     }
 
     nav ul {
-        width: 90%; /* Genişliği artırdık */
-        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Tam genişlik */
+        margin: 0;
         padding: 0;
     }
 
     nav ul li {
-        width: 100%;
-        text-align: center;
+        width: 90%; /* Genişliği azalttık */
+        margin: 2px 0; /* Üst ve alt margin */
     }
 
     nav ul li a {
         display: block;
-        width: calc(100% - 30px); /* Sağ ve sol boşluk için genişliği ayarla */
-        padding: 25px 8px; /* Sağ ve sol padding'i artırdık */
+        width: 100%; /* Tam genişlik */
+        padding: 8px 0; /* Sadece üst ve alt padding */
         font-size: 1.1rem;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 4px;
-        margin: 15px 8px; /* Sağ ve sol margin'i artırdık */
         text-align: center;
     }
 
