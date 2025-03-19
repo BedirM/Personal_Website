@@ -297,11 +297,11 @@ section {
     margin-bottom: 40px;
     width: 80%;
     max-width: 800px;
-    min-height: 600px;
+    min-height: 700px; /* Kartın boyunu uzattık */
     position: relative;
     color: #ffffff;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 120px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
 }
 
 .profile-container {
