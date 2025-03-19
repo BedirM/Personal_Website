@@ -224,7 +224,7 @@ section {
         background: rgba(30, 30, 30, 0.7);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        margin-top: 70px;
+        margin-top: 90px;
         margin-bottom: 40px;
         width: 90%;
         max-width: 100%;
@@ -232,11 +232,11 @@ section {
         position: relative;
         color: #ffffff;
         text-align: center;
-        padding-top: 180px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
+        padding-top: 220px; /* Hakkımda başlığını ve altındaki kısımları aşağı çektik */
     }
 
     .profile-container {
-        top: 5px; /* Profil fotoğrafını aşağı çektik */
+        top: 30px; /* Profil fotoğrafını aşağı çektik */
     }
 
     .edit-link {
