@@ -289,17 +289,33 @@ section {
 }
 
 #hakkimda {
-    padding: 40px; /* İç boşluğu artır */
-    background: rgba(30, 30, 30, 0.7); /* Arka plan rengi ve şeffaflık (0.7 değeri ile artırıldı) */
+    padding: 40px;
+    background: rgba(30, 30, 30, 0.7);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
-    margin-bottom: 40px; /* Footer ile arasındaki boşluğu artır */
+    margin-bottom: 40px;
     width: 80%;
     max-width: 700px;
     position: relative;
     color: #ffffff;
-    max-height: none; /* Maksimum yükseklik sınırını kaldır */
+    max-height: none;
+    text-align: center;
+}
+
+.profile-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #A8FF00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
 .edit-link {
@@ -1023,19 +1039,6 @@ button:hover {
     opacity: 0.8; /* Hover durumunda opaklığı azalt */
 }
 
-.profile-container {
-    text-align: center; /* Fotoğrafı ortala */
-    margin-top: 20px; /* Üstten boşluk bırak */
-}
-
-.profile-photo {
-    width: 150px; /* Fotoğraf genişliği */
-    height: auto; /* Yüksekliği otomatik ayarla */
-    border-radius: 50%; /* Yuvarlak hale getir */
-    border: 2px solid #A8FF00; /* Kenar rengi */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge efekti */
-}
-
 .skills-container {
     display: flex;
     flex-wrap: wrap;
@@ -1186,5 +1189,17 @@ button:hover {
 @media screen and (max-width: 480px) {
     .blog-card .blog-content p {
         font-size: 13px; /* En küçük ekranlarda font boyutunu biraz daha küçült */
+    }
+}
+
+/* Mobil için düzenleme */
+@media screen and (max-width: 768px) {
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    #hakkimda {
+        padding: 30px 20px;
     }
 }
