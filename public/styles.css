@@ -782,13 +782,13 @@ section {
 
     nav ul li a {
         display: block;
-        width: calc(100% - 20px); /* Genişlikten padding'i çıkar */
-        padding: 8px 10px; /* Sağ ve sol padding eşit */
+        width: calc(100% - 30px); /* Genişlikten padding'i çıkar */
+        padding: 8px 20px; /* Sol padding 10px, sağ padding 20px yaptık */
         font-size: 1.1rem;
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 4px;
         text-align: center;
-        margin: 0 auto; /* Otomatik margin ile ortalama */
+        margin: 0 auto;
     }
 
     nav ul li a:hover {
