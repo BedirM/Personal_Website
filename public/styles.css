@@ -1258,3 +1258,22 @@ button:hover {
         top: 60px; /* Profil fotoğrafını daha da aşağı çektik */
     }
 }
+
+/* Buton için stil ayarları */
+.language-toggle {
+    position: fixed; /* Sabit konumlandırma */
+    top: 20px; /* Üstten mesafe */
+    right: 20px; /* Sağdan mesafe */
+    background-color: #A8FF00; /* Buton rengi */
+    color: #121212; /* Yazı rengi */
+    border: none; /* Kenar yok */
+    padding: 10px 20px; /* İç boşluk */
+    border-radius: 5px; /* Yuvarlatılmış köşeler */
+    cursor: pointer; /* İmleç değişimi */
+    z-index: 1000; /* Diğer içeriklerin üstünde görünmesi için */
+}
+
+/* Buton hover efekti */
+.language-toggle:hover {
+    background-color: #76C757; /* Hover rengi */
+}
