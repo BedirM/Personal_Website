@@ -322,3 +322,21 @@ document.querySelector('.logo-link').addEventListener('click', function(e) {
     window.location.href = 'index.html'; // Ana sayfaya yönlendir
 });
 
+// JavaScript fonksiyonu
+let currentLanguage = 'en'; // Varsayılan dil
+
+function toggleLanguage() {
+    // Mevcut dili değiştir
+    currentLanguage = currentLanguage === 'en' ? 'tr' : 'en';
+
+    // Tüm içerikleri güncelle
+    const elements = document.querySelectorAll('[data-lang]');
+    elements.forEach(element => {
+        if (element.getAttribute('data-lang') === currentLanguage) {
+            element.style.display = 'block'; // Görünür yap
+        } else {
+            element.style.display = 'none'; // Gizle
+        }
+    });
+}
+
