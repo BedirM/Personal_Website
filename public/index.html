@@ -20,56 +20,55 @@
       </a>
       <a href="index.html" class="logo-link">
         <h1 class="site-title">
-          <span class="green-text">Bedir</span> <span class="white-text">Müjde</span>
+          <span class="green-text" data-translate="siteTitleGreen">Bedir</span>
+          <span class="white-text" data-translate="siteTitleWhite">Müjde</span>
         </h1>
       </a>
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="about.html">Hakkımda</a></li>
-        <li><a href="#blog">Blog Yazılarım</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
+        <li><a href="index.html" data-translate="navHome">Ana Sayfa</a></li>
+        <li><a href="about.html" data-translate="navAbout">Hakkımda</a></li>
+        <li><a href="#blog" data-translate="navBlog">Blog Yazılarım</a></li>
+        <li><a href="#iletisim" data-translate="navContact">İletişim</a></li>
       </ul>
     </nav>
   </header>
 
   <section id="welcome">
     <div class="welcome-content">
-        <h2 class="welcome-title">Kişisel Web Siteme Hoşgeldiniz!</h2>
-        <p class="welcome-subtitle">Yazılım Geliştirici & Teknoloji Tutkunu</p>
+        <h2 class="welcome-title" data-translate="welcomeTitle">Kişisel Web Siteme Hoşgeldiniz!</h2>
+        <p class="welcome-subtitle" data-translate="welcomeSubtitle">Yazılım Geliştirici & Teknoloji Tutkunu</p>
         <div class="welcome-description">
-            <p>Merhaba! Ben Bedir Müjde. Yazılım geliştirme ve teknoloji dünyasındaki deneyimlerimi, düşüncelerimi ve projelerimi paylaştığım kişisel blog sayfama hoş geldiniz.</p>
-            <p>Burada yazılım, teknoloji ve kişisel gelişim üzerine içerikler bulacaksınız.</p>
+            <p data-translate="welcomeDesc1">Merhaba! Ben Bedir Müjde. Yazılım geliştirme ve teknoloji dünyasındaki deneyimlerimi, düşüncelerimi ve projelerimi paylaştığım kişisel blog sayfama hoş geldiniz.</p>
+            <p data-translate="welcomeDesc2">Burada yazılım, teknoloji ve kişisel gelişim üzerine içerikler bulacaksınız.</p>
         </div>
-        <button id="readLatestPosts">Son Yazıları Oku</button>
+        <button id="readLatestPosts" data-translate="readLatestPosts">Son Yazıları Oku</button>
     </div>
   </section>
 
   <section id="blog">
-    <h2>Blog Yazılarım</h2>
+    <h2 data-translate="blogTitle">Blog Yazılarım</h2>
     <div id="blogContainer">
         <!-- Blog yazıları burada listelenecek -->
     </div>
   </section>
 
   <section id="iletisim">
-    <h2>İletişim</h2>
+    <h2 data-translate="contactTitle">İletişim</h2>
     <div class="social-links">
       <a href="https://github.com/BedirM" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
       <a href="mailto:bedirmujde@hotmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-      <a href="https://www.linkedin.com/in/bedir-m%C3%BCjde-3a27b6221/" target="_blank" class="social-icon"><i
-          class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/bedir.mjd/" target="_blank" class="social-icon"><i
-          class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/bedir-m%C3%BCjde-3a27b6221/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/bedir.mjd/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
     </div>
 
-    <h2 id="contact">Bana Ulaşın</h2>
+    <h2 id="contact" data-translate="contactHeader">Bana Ulaşın</h2>
     <form id="contactForm">
-      <input type="text" id="name" placeholder="Adınız" required>
-      <input type="email" id="email" placeholder="E-posta" required>
-      <textarea id="message" placeholder="Mesajınız" required></textarea>
-      <button type="submit">Gönder</button>
+      <input type="text" id="name" placeholder="Adınız" required data-translate-placeholder="contactNamePlaceholder">
+      <input type="email" id="email" placeholder="E-posta" required data-translate-placeholder="contactEmailPlaceholder">
+      <textarea id="message" placeholder="Mesajınız" required data-translate-placeholder="contactMessagePlaceholder"></textarea>
+      <button type="submit" data-translate="submitContact">Gönder</button>
     </form>
   </section>
 
@@ -81,9 +80,9 @@
   </section>
 
   <canvas id="canvas"></canvas>
-  <div class="container"> </div>
+  <div class="container"></div>
   <footer>
-    <p>&copy; 2025 Bedir Müjde. Tüm hakları saklıdır.</p>
+    <p data-translate="footerText">&copy; 2025 Bedir Müjde. Tüm hakları saklıdır.</p>
   </footer>
   <button class="language-toggle" onclick="toggleLanguage()">EN / TR</button>
   <script src="script.js"></script>
