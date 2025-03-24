@@ -138,15 +138,6 @@ app.use('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'public/index.html'));
     }
 });
-app.get('/api/translate', (req, res) => {
-    const lang = req.query.lang || 'tr'; // Varsayılan dil Türkçe
-    const translations = {
-        tr: { welcome: "Hoş Geldiniz", description: "Bu bir deneme metnidir." },
-        en: { welcome: "Welcome", description: "This is a test text." }
-    };
-
-    res.json({ translations: translations[lang] || translations["tr"] });
-});
 
 // 404 handler
 app.use((req, res) => {
