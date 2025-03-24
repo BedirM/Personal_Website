@@ -16,6 +16,12 @@ console.log("CORS modülü başarıyla yüklendi!");
 const path = require('path');
 const jwt = require('jsonwebtoken');
 
+// Google Translate API için
+const { Translate } = require('@google-cloud/translate').v2;
+const translate = new Translate({
+    key: process.env.GOOGLE_TRANSLATE_API_KEY
+});
+
 const app = express();
 
 // Mongoose ayarları
@@ -77,7 +83,7 @@ app.use('/api/blogs', blogRoutes);
 
 // Admin sayfası route'ları
 app.get(['/admin', '/admin.html'], (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'admin.html')); // Admin sayfasını gönder
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // API endpoint'leri için admin yetkilendirme kontrolü
@@ -91,7 +97,7 @@ app.post('/api/admin/auth', (req, res) => {
 });
 
 // Admin API endpoint'leri için yetkilendirme
-app.use('/api/admin', adminAuth); // Admin API'leri için yetkilendirme kontrolü
+app.use('/api/admin', adminAuth);
 
 // Blog ekleme
 app.post('/api/admin/blogs', adminAuth, async (req, res) => {
@@ -109,7 +115,7 @@ app.put('/api/blogs/:id', async (req, res) => {
             content,
             tags,
             imageUrl
-        }, { new: true }); // Yeni güncellenmiş belgeyi döndür
+        }, { new: true });
 
         if (!updatedBlog) {
             return res.status(404).send('Blog bulunamadı');
@@ -126,9 +132,59 @@ app.delete('/api/admin/blogs/:id', adminAuth, async (req, res) => {
     // Blog silme işlemleri
 });
 
-// Diğer admin API endpoint'leri için de adminAuth middleware'ini ekleyin
-app.use('/api/admin/messages', adminAuth); // Mesajlar için
-app.use('/api/admin/about', adminAuth); // Hakkımda için
+// Diğer admin API endpoint'leri için adminAuth middleware'i
+app.use('/api/admin/messages', adminAuth);
+app.use('/api/admin/about', adminAuth);
+
+// Google Translate endpoint'i
+app.get('/api/translate', async (req, res) => {
+    const targetLang = req.query.lang || 'tr';
+
+    // Orijinal metinler (Türkçe) – HTML'deki data-translate anahtarlarıyla eşleşecek
+    const originals = {
+        siteTitleGreen: "Bedir",
+        siteTitleWhite: "Müjde",
+        navHome: "Ana Sayfa",
+        navAbout: "Hakkımda",
+        navBlog: "Blog Yazılarım",
+        navContact: "İletişim",
+        welcomeTitle: "Kişisel Web Siteme Hoşgeldiniz!",
+        welcomeSubtitle: "Yazılım Geliştirici & Teknoloji Tutkunu",
+        welcomeDesc1: "Merhaba! Ben Bedir Müjde. Yazılım geliştirme ve teknoloji dünyasındaki deneyimlerimi, düşüncelerimi ve projelerimi paylaştığım kişisel blog sayfama hoş geldiniz.",
+        welcomeDesc2: "Burada yazılım, teknoloji ve kişisel gelişim üzerine içerikler bulacaksınız.",
+        readLatestPosts: "Son Yazıları Oku",
+        blogTitle: "Blog Yazılarım",
+        contactTitle: "İletişim",
+        contactHeader: "Bana Ulaşın",
+        contactNamePlaceholder: "Adınız",
+        contactEmailPlaceholder: "E-posta",
+        contactMessagePlaceholder: "Mesajınız",
+        submitContact: "Gönder",
+        footerText: "© 2025 Bedir Müjde. Tüm hakları saklıdır."
+    };
+
+    // Hedef dil Türkçe ise, orijinal metinleri döndür
+    if (targetLang === 'tr') {
+        return res.json({ translations: originals });
+    }
+
+    try {
+        const keys = Object.keys(originals);
+        const translationResults = await Promise.all(keys.map(async key => {
+            const text = originals[key];
+            const [translatedText] = await translate.translate(text, targetLang);
+            return { key, translatedText };
+        }));
+        const translations = {};
+        translationResults.forEach(item => {
+            translations[item.key] = item.translatedText;
+        });
+        res.json({ translations });
+    } catch (err) {
+        console.error("Çeviri API Hatası:", err);
+        res.status(500).json({ error: "Çeviri işlemi başarısız oldu." });
+    }
+});
 
 // Tüm diğer route'lar için index.html'i gönder
 app.use('*', (req, res) => {
@@ -137,15 +193,6 @@ app.use('*', (req, res) => {
     } else if (!req.path.startsWith('/api/')) {
         res.sendFile(path.join(__dirname, 'public/index.html'));
     }
-});
-app.get('/api/translate', (req, res) => {
-    const lang = req.query.lang || 'tr'; // Varsayılan dil Türkçe
-    const translations = {
-        tr: { welcome: "Hoş Geldiniz", description: "Bu bir deneme metnidir." },
-        en: { welcome: "Welcome", description: "This is a test text." }
-    };
-
-    res.json({ translations: translations[lang] || translations["tr"] });
 });
 
 // 404 handler
