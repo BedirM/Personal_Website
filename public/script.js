@@ -129,7 +129,7 @@ if (document.getElementById('contactForm')) {
             return;
         }
 
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail|yahoo)\.com$/;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail|yahoo)\.com$/; // Sadece belirli e-posta sağlayıcıları
         if (!email || !emailPattern.test(email) || email.length > 50) {
             alert('Lütfen geçerli bir e-posta adresi girin (örneğin: example@gmail.com, en fazla 50 karakter).');
             return;
@@ -199,6 +199,7 @@ async function showBlogDetail(id) {
 // Blog detayını kapat
 function closeBlogDetail() {
     const blogDetail = document.getElementById('blogDetail');
+    // Bulanıklaştırılmış tüm içeriği seç
     const mainContent = document.querySelector('body > *:not(#blogDetail)');
     
     if (blogDetail) {
@@ -207,52 +208,25 @@ function closeBlogDetail() {
     
     document.body.style.overflow = 'auto';
     
+    // Bulanıklığı kaldır
     if (mainContent) {
         mainContent.classList.remove('blur-background');
     }
 }
 
-// Çeviri fonksiyonu: toggleLanguage, backend'den otomatik çeviri yapar.
-function toggleLanguage() {
-    const currentLang = localStorage.getItem("lang") || "tr";
-    const newLang = currentLang === "tr" ? "en" : "tr";
-    localStorage.setItem("lang", newLang);
-    translatePage(newLang);
-}
-
-async function translatePage(lang) {
-    try {
-        // API'den çeviri sonuçlarını al. 
-        // Örneğin, backend GET /api/translate?lang=en isteğiyle
-        const response = await fetch(`/api/translate?lang=${lang}`);
-        const data = await response.json();
-
-        if (data.translations) {
-            // data.translations nesnesinin anahtarları, HTML'de data-translate değerleri ile eşleşmeli
-            Object.keys(data.translations).forEach(key => {
-                const element = document.querySelector(`[data-translate="${key}"]`);
-                if (element) {
-                    element.innerText = data.translations[key];
-                }
-            });
-        }
-    } catch (error) {
-        console.error("Çeviri işlemi başarısız:", error);
-    }
-}
-
-// Diğer tüm sayfa işlevlerini ve smooth scroll ayarlarını yükle
+// Sayfa yüklendiğinde
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Sayfa yüklendi!');
-    createStars();
+    console.log('Sayfa yüklendi!'); // Kontrol için
+    createStars(); // Yıldızları oluştur
     getHakkimdaContent();
     loadBlogs();
 
-    // Admin sayfasında checkAuth fonksiyonu varsa çağır
+    // Admin sayfasında checkAuth fonksiyonunu çağır
     if (window.location.pathname === '/admin.html') {
-        checkAuth();
+        checkAuth(); // Admin sayfasında checkAuth fonksiyonunu çağır
     }
 
+    // Hakkımda sayfasında içerik yükle
     if (window.location.pathname === '/about.html') {
         getHakkimdaContent();
     }
@@ -261,19 +235,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogLink = document.querySelector('nav ul li a[href="#blog"]');
     if (blogLink) {
         blogLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.getElementById('blog');
+            e.preventDefault(); // Varsayılan davranışı engelle
+            const target = document.getElementById('blog'); // Hedef bölüm
             if (target) {
-                const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY; // Hedefin konumunu al
                 window.scrollTo({
                     top: targetPosition,
-                    behavior: 'smooth'
+                    behavior: 'smooth' // Yumuşak kaydırma
                 });
             }
         });
     }
 
-    // İletişim butonuna tıklanıldığında smooth scroll
+    // İletişim butonuna tıklandığında ana sayfanın iletişim kısmına git
     document.querySelectorAll('nav ul li a[href="index.html#iletisim"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -298,23 +272,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const passwordInput = document.getElementById('adminPassword');
     if (passwordInput) {
-        passwordInput.focus();
+        passwordInput.focus(); // Sayfa yüklendiğinde inputa odaklan
     }
 
     // "Son Yazıları Oku" butonuna tıklanıldığında smooth scroll
     const readLatestPostsButton = document.getElementById('readLatestPosts');
     if (readLatestPostsButton) {
         readLatestPostsButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.getElementById('blog');
+            e.preventDefault(); // Varsayılan davranışı engelle
+            const target = document.getElementById('blog'); // Hedef bölüm
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({ behavior: 'smooth' }); // Yumuşak kaydırma
             }
         });
     }
 });
 
-// Ek smooth scroll ayarı
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -327,7 +301,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Ana sayfadaki diğer bağlantıları yönet
+// Hakkımda sayfasındaki iletişim ve blog bağlantılarına tıklanıldığında ana sayfadaki ilgili bölümlere git
 document.querySelectorAll('nav ul li a').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -337,18 +311,44 @@ document.querySelectorAll('nav ul li a').forEach(link => {
         } else if (target === 'blog.html') {
             window.location.href = 'blog.html';
         } else {
-            window.location.href = target;
+            window.location.href = target; // Ana sayfaya git
         }
     });
 });
 
-// Logoya tıklanıldığında ana sayfaya yönlendir
+// Logoya tıklanıldığında ana sayfaya git
 document.querySelector('.logo-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.location.href = 'index.html';
+    e.preventDefault(); // Varsayılan davranışı engelle
+    window.location.href = 'index.html'; // Ana sayfaya yönlendir
 });
 
-// Sayfa yüklendiğinde mevcut dili uygula (opsiyonel)
+
+document.getElementById("translateBtn").addEventListener("click", async function () {
+    const currentLang = localStorage.getItem("lang") || "tr"; 
+    const newLang = currentLang === "tr" ? "en" : "tr"; 
+
+    localStorage.setItem("lang", newLang);
+    translatePage(newLang);
+});
+
+async function translatePage(lang) {
+    try {
+        const response = await fetch(`/api/translate?lang=${lang}`);
+        const data = await response.json();
+
+        if (data.translations) {
+            Object.keys(data.translations).forEach(key => {
+                const element = document.querySelector(`[data-key="${key}"]`);
+                if (element) {
+                    element.innerText = data.translations[key];
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Çeviri işlemi başarısız:", error);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const lang = localStorage.getItem("lang") || "tr";
     translatePage(lang);
