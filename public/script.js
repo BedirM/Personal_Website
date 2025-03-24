@@ -322,21 +322,34 @@ document.querySelector('.logo-link').addEventListener('click', function(e) {
     window.location.href = 'index.html'; // Ana sayfaya yönlendir
 });
 
-// JavaScript fonksiyonu
-let currentLanguage = 'en'; // Varsayılan dil
 
-function toggleLanguage() {
-    // Mevcut dili değiştir
-    currentLanguage = currentLanguage === 'en' ? 'tr' : 'en';
+document.getElementById("translateBtn").addEventListener("click", async function () {
+    const currentLang = localStorage.getItem("lang") || "tr"; 
+    const newLang = currentLang === "tr" ? "en" : "tr"; 
 
-    // Tüm içerikleri güncelle
-    const elements = document.querySelectorAll('[data-lang]');
-    elements.forEach(element => {
-        if (element.getAttribute('data-lang') === currentLanguage) {
-            element.style.display = 'block'; // Görünür yap
-        } else {
-            element.style.display = 'none'; // Gizle
+    localStorage.setItem("lang", newLang);
+    translatePage(newLang);
+});
+
+async function translatePage(lang) {
+    try {
+        const response = await fetch(`/api/translate?lang=${lang}`);
+        const data = await response.json();
+
+        if (data.translations) {
+            Object.keys(data.translations).forEach(key => {
+                const element = document.querySelector(`[data-key="${key}"]`);
+                if (element) {
+                    element.innerText = data.translations[key];
+                }
+            });
         }
-    });
+    } catch (error) {
+        console.error("Çeviri işlemi başarısız:", error);
+    }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const lang = localStorage.getItem("lang") || "tr";
+    translatePage(lang);
+});
