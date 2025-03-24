@@ -46,7 +46,6 @@ app.use(cors({
     origin: [
         'http://localhost:3000', // Geliştirme ortamı
         'https://bedirmujde-personal-website.vercel.app', // Vercel URL'si
-        'https://personal-website-git-main-bedirs-projects-b20fcbc6.vercel.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
@@ -138,6 +137,15 @@ app.use('*', (req, res) => {
     } else if (!req.path.startsWith('/api/')) {
         res.sendFile(path.join(__dirname, 'public/index.html'));
     }
+});
+app.get('/api/translate', (req, res) => {
+    const lang = req.query.lang || 'tr'; // Varsayılan dil Türkçe
+    const translations = {
+        tr: { welcome: "Hoş Geldiniz", description: "Bu bir deneme metnidir." },
+        en: { welcome: "Welcome", description: "This is a test text." }
+    };
+
+    res.json({ translations: translations[lang] || translations["tr"] });
 });
 
 // 404 handler
