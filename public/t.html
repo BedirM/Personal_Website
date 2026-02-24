@@ -135,8 +135,10 @@ button:hover {
     <div class="title">root@securedrive:~$</div>
     <h1>authorize_access</h1>
 
-    <input type="password" id="password" placeholder="enter passphrase">
-    <button onclick="checkPassword()">EXECUTE</button>
+    <form id="loginForm">
+                        <input type="password" id="password" placeholder="enter passphrase">
+                        <button type="submit">EXECUTE</button>
+    </form>
 
     <div class="error" id="error">ACCESS DENIED</div>
 </div>
@@ -171,3 +173,4 @@ function checkPassword() {
 
 </body>
 </html>
+
