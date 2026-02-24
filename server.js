@@ -75,6 +75,21 @@ app.use('/api/about', aboutRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/blogs', blogRoutes);
 
+// Drive şifre kontrol endpointi
+app.post('/api/check-password', (req, res) => {
+
+    const { password } = req.body;
+
+    if (password === process.env.DRIVE_PASSWORD) {
+        return res.status(200).json({
+            success: true,
+            driveUrl: process.env.DRIVE_URL
+        });
+    }
+
+    return res.status(200).json({ success: false });
+});
+
 // Admin sayfası route'ları
 app.get(['/admin', '/admin.html'], (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html')); // Admin sayfasını gönder
