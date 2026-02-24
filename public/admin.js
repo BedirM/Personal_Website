@@ -12,19 +12,39 @@ async function checkAuth() {
     });
 
     if (response.ok) {
-        // Başarılı giriş
-        document.getElementById('authSection').style.display = 'none'; // Şifre giriş bölümünü gizle
-        document.getElementById('adminContent').style.display = 'block'; // Admin içeriğini göster
-        loadAboutContent();
-        loadBlogs();
-        loadMessages();
-    } else {
-        // Hata durumu
-        alert('Yanlış şifre!');
-        window.location.href = '/'; // Ana sayfaya yönlendir
-    }
-}
 
+        const button = document.getElementById('adminSubmitBtn');
+        const form = document.getElementById('adminLoginForm');
+
+        if (button) {
+            button.textContent = "ACCESS GRANTED";
+            button.classList.add("granted");
+    }
+
+    // 0.5 saniyelik neon bekleme
+        setTimeout(() => {
+
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+
+            loadAboutContent();
+            loadBlogs();
+            loadMessages();
+
+        }, 500);
+
+    }
+    else {
+
+        const button = document.getElementById('adminSubmitBtn');
+
+        if (button) {
+            button.textContent = "EXECUTE";
+            button.disabled = false;
+        }
+
+        alert('Yanlış şifre!');
+    }
 // Sayfa yüklendiğinde güvenlik kontrolü yap
 document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('adminPassword');
@@ -316,5 +336,24 @@ function logout() {
     sessionStorage.removeItem('token'); // Token'ı sil
     window.location.href = '/';
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("adminLoginForm");
+    const button = document.getElementById("adminSubmitBtn");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        button.textContent = "AUTHORIZING...";
+        button.disabled = true;
+
+        checkAuth();
+    });
+
+});    
 
 
