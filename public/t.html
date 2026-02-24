@@ -3,79 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dosyalar</title>
+<title>Secure Access</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    font-family: Arial, sans-serif;
-}
-
-.card {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    width: 320px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-
-h2 {
+    background: radial-gradient(circle at 20% 20%, #1e293b, #0f172a 60%);
+    font-family: 'Inter', sans-serif;
     color: white;
-    margin-bottom: 20px;
+}
+
+.container {
+    width: 360px;
+    padding: 40px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transition: 0.3s ease;
+}
+
+h1 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+p {
+    margin: 0 0 24px 0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
 }
 
 input {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-size: 14px;
     outline: none;
-    margin-bottom: 15px;
+    transition: 0.2s;
+}
+
+input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
 }
 
 button {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 14px;
+    margin-top: 16px;
+    border-radius: 10px;
     border: none;
-    cursor: pointer;
-    background: #00c6ff;
+    background: #2563eb;
     color: white;
-    font-weight: bold;
-    transition: 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
 button:hover {
-    background: #0072ff;
+    background: #1d4ed8;
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 .error {
-    color: #ff6b6b;
-    margin-top: 10px;
-    display: none;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #f87171;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.error.show {
+    opacity: 1;
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-    <h2>Drive Erişim</h2>
+<div class="container" id="card">
+    <h1>Secure Drive Access</h1>
+    <p>Yetkili erişim gereklidir.</p>
     <input type="password" id="password" placeholder="Şifre girin">
-    <button onclick="checkPassword()">Giriş Yap</button>
-    <div class="error" id="error">Yanlış şifre</div>
+    <button onclick="checkPassword()">Devam Et</button>
+    <div class="error" id="error">Şifre hatalı</div>
 </div>
 
 <script>
 function checkPassword() {
     const password = document.getElementById("password").value;
+    const card = document.getElementById("card");
+    const error = document.getElementById("error");
 
     fetch("/api/check-password", {
         method: "POST",
@@ -89,7 +139,11 @@ function checkPassword() {
         if (data.success) {
             window.location.href = data.driveUrl;
         } else {
-            document.getElementById("error").style.display = "block";
+            error.classList.add("show");
+            card.classList.add("shake");
+            setTimeout(() => {
+                card.classList.remove("shake");
+            }, 300);
         }
     });
 }
