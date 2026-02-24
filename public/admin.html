@@ -150,17 +150,45 @@
                 .message strong {
                                 color: #ffffff !important;
                                 }
+                #error,
+                        #adminError {
+                                        margin-top: 10px;
+                                        color: #ff3b3b;
+                                        opacity: 0;
+                                        transition: 0.3s;
+                                    }
+
+                        #adminError.show {
+                                            opacity: 1;
+                                         }
+
+                        .granted {
+                                    color: #00ff9d;
+                                    text-shadow: 0 0 8px #00ff9d,
+                                    0 0 20px #00ff9d,
+                                    0 0 40px #00ff9d;
+                                    animation: flash 0.5s ease;
+                                }
+
+                        @keyframes flash {
+                                    0% { opacity: 0; transform: scale(0.95); }
+                                    50% { opacity: 1; transform: scale(1.05); }
+                                    100% { opacity: 1; transform: scale(1); }
+                                        }
     </style>
 </head>
 <body>
     <div class="admin-container">
         <h1>Admin Paneli</h1>
         
-        <div id="authSection">
+      <div id="authSection">
+        <form id="adminLoginForm">
             <input type="password" id="adminPassword" placeholder="Şifrenizi girin" required>
-            <button onclick="checkAuth()">Giriş Yap</button>
+            <button type="submit" id="adminSubmitBtn">EXECUTE</button>
+         </form>
+            <div class="error" id="adminError">ACCESS DENIED</div>
         </div>
-
+        
         <div id="adminContent" style="display: none;">
             <section id="messages">
                 <h2>Gelen Mesajlar</h2>
