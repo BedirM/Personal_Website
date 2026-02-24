@@ -147,6 +147,9 @@ app.delete('/api/admin/blogs/:id', adminAuth, async (req, res) => {
 app.use('/api/admin/messages', adminAuth); // Mesajlar için
 app.use('/api/admin/about', adminAuth); // Hakkımda için
 
+app.get('/t', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 't.html'));
+});
 // Tüm diğer route'lar için index.html'i gönder
 app.use('*', (req, res) => {
    if (req.path === '/admin' || req.path === '/admin.html') {
