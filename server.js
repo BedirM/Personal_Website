@@ -34,7 +34,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Statik dosyaları serve et
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public'), {
+    index: false
+}));
 
 // Favicon isteğini yönet
 app.get('/favicon.ico', (req, res) => {
