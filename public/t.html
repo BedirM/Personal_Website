@@ -126,6 +126,19 @@ button:hover {
     75% { transform: translateX(-4px); }
     100% { transform: translateX(0); }
 }
+    .granted {
+    color: #00ff9d;
+    text-shadow: 0 0 8px #00ff9d,
+                 0 0 20px #00ff9d,
+                 0 0 40px #00ff9d;
+    animation: flash 0.5s ease;
+}
+
+@keyframes flash {
+    0% { opacity: 0; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
 </style>
 </head>
 
@@ -137,7 +150,7 @@ button:hover {
 
     <form id="loginForm">
                         <input type="password" id="password" placeholder="enter passphrase">
-                        <button type="submit">EXECUTE</button>
+                        <button type="submit" id="submitBtn">EXECUTE</button>
     </form>
 
     <div class="error" id="error">ACCESS DENIED</div>
@@ -149,11 +162,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("loginForm");
     const card = document.getElementById("card");
     const error = document.getElementById("error");
+    const button = document.getElementById("submitBtn");
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const password = document.getElementById("password").value;
+
+        // AUTHORIZING state
+        button.textContent = "AUTHORIZING...";
+        button.disabled = true;
+        error.classList.remove("show");
 
         fetch("/api/check-password", {
             method: "POST",
@@ -165,10 +184,26 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                window.location.href = data.driveUrl;
+
+                // ACCESS GRANTED efekti
+                card.innerHTML = `
+                    <div class="title">root@securedrive:~$</div>
+                    <h1 class="granted">ACCESS GRANTED</h1>
+                `;
+
+                setTimeout(() => {
+                    window.location.href = data.driveUrl;
+                }, 500);
+
             } else {
+
+                // Hatalı şifre
+                button.textContent = "EXECUTE";
+                button.disabled = false;
+
                 error.classList.add("show");
                 card.classList.add("shake");
+
                 setTimeout(() => {
                     card.classList.remove("shake");
                 }, 250);
@@ -176,6 +211,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(err => {
             console.error("Hata:", err);
+            button.textContent = "EXECUTE";
+            button.disabled = false;
         });
     });
 
@@ -184,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
