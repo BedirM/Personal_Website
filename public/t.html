@@ -144,37 +144,46 @@ button:hover {
 </div>
 
 <script>
-function checkPassword() {
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-    const password = document.getElementById("password").value;
+    const form = document.getElementById("loginForm");
     const card = document.getElementById("card");
     const error = document.getElementById("error");
 
-    fetch("/api/check-password", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ password })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = data.driveUrl;
-        } else {
-            error.classList.add("show");
-            card.classList.add("shake");
-            setTimeout(() => {
-                card.classList.remove("shake");
-            }, 250);
-        }
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const password = document.getElementById("password").value;
+
+        fetch("/api/check-password", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ password })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.driveUrl;
+            } else {
+                error.classList.add("show");
+                card.classList.add("shake");
+                setTimeout(() => {
+                    card.classList.remove("shake");
+                }, 250);
+            }
+        })
+        .catch(err => {
+            console.error("Hata:", err);
+        });
     });
+
 });
 </script>
 
 </body>
 </html>
+
 
 
