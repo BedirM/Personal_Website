@@ -1,33 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <title>Özel Alan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dosyalar</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #00c6ff;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0072ff;
+}
+
+.error {
+    color: #ff6b6b;
+    margin-top: 10px;
+    display: none;
+}
+</style>
 </head>
+
 <body>
-  <h2>Şifre Giriniz</h2>
-  <input type="password" id="password">
-  <button onclick="login()">Giriş</button>
 
-  <script>
-    async function login() {
-      const password = document.getElementById("password").value;
+<div class="card">
+    <h2>Drive Erişim</h2>
+    <input type="password" id="password" placeholder="Şifre girin">
+    <button onclick="checkPassword()">Giriş Yap</button>
+    <div class="error" id="error">Yanlış şifre</div>
+</div>
 
-      const response = await fetch("/api/check-password", {
+<script>
+function checkPassword() {
+    const password = document.getElementById("password").value;
+
+    fetch("/api/check-password", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({ password })
-      });
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.driveUrl;
+        } else {
+            document.getElementById("error").style.display = "block";
+        }
+    });
+}
+</script>
 
-      const data = await response.json();
-
-      if (data.success) {
-        window.location.href = data.driveUrl;
-      } else {
-        alert("Şifre yanlış");
-      }
-    }
-  </script>
 </body>
 </html>
