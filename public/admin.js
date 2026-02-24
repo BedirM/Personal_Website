@@ -43,8 +43,10 @@ async function checkAuth() {
             button.disabled = false;
         }
 
-        alert('Yanlış şifre!');
+           alert('Yanlış şifre!');
     }
+
+}
 // Sayfa yüklendiğinde güvenlik kontrolü yap
 document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('adminPassword');
