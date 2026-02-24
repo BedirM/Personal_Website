@@ -331,12 +331,13 @@ async function deleteMessage(messageId) {
     }
 }
 
-// Çıkış yap
 function logout() {
-    sessionStorage.removeItem('token'); // Token'ı sil
+    sessionStorage.removeItem('token');
     window.location.href = '/';
 }
 
+
+/* ===== LOGIN FORM SUBMIT HANDLER ===== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -354,6 +355,4 @@ document.addEventListener("DOMContentLoaded", function () {
         checkAuth();
     });
 
-});    
-
-
+});
