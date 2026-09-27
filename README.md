@@ -2,3 +2,5 @@
 personal website project
 
 https://bedirmujde-personal-website.vercel.app
+https://bedirmujde.vercel.app
+
